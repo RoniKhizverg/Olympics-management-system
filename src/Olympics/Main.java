@@ -31,15 +31,15 @@ public class Main {
         Country Brazil = new Country("Brazil", "Hino Nacional Brasileiro");
 
 
-        Referee ronni = new JumpingReferee("Roni", 22, "Male", Ukraine, 10, Referee.eJudgingType.jumping, 81);
+        Referee roni = new JumpingReferee("Roni", 22, "Male", Ukraine, 10, Referee.eJudgingType.jumping, 81);
         Referee mor = new JumpingReferee("Mor", 25, "Female", Israel, 11, Referee.eJudgingType.jumping, 70);
-        Referee sharon = new JumpingReferee("Sharon", 24, "Female",Hong_Kong , 3, Referee.eJudgingType.jumping, 50);
+        Referee sharon = new JumpingReferee("Sharon", 24, "Female", Hong_Kong, 3, Referee.eJudgingType.jumping, 50);
         Referee omri = new JumpingReferee("Omri", 28, "Male", Austria, 5, Referee.eJudgingType.jumping, 40);
         Referee tal = new JumpingReferee("Tal", 20, "Male", Germany, 1, Referee.eJudgingType.jumping, 1);
 
         Referee or = new RunnerReferee("Or", 22, "Male", Turkey, 7, Referee.eJudgingType.running, 60);
         Referee effi = new RunnerReferee("Effi", 35, "Male", Israel, 11, Referee.eJudgingType.running, 41);
-        Referee eran = new RunnerReferee("Eran", 24, "Male",Australia , 5, Referee.eJudgingType.running, 21);
+        Referee eran = new RunnerReferee("Eran", 24, "Male", Australia, 5, Referee.eJudgingType.running, 21);
         Referee timor = new RunnerReferee("Timor", 29, "Male", Russian, 9, Referee.eJudgingType.running, 30);
         Referee alina = new RunnerReferee("Alina", 45, "Female", Ukraine, 4, Referee.eJudgingType.running, 20);
 
@@ -89,7 +89,9 @@ public class Main {
         //Spain
         Athlete Valentí_Massana = new Jumper("Valentí Massana", 28, "Male", Spain, 0, Athlete.eSportTypes.jumping, 4);
         Athlete Jordi_Llopart = new Jumper("Jordi Llopart", 27, "Male", Spain, 0, Athlete.eSportTypes.jumping, 3);
-                                                                        //Runners
+
+
+        //Runners
         //Usa
         Athlete Thomas_Burke = new Runner("Thomas Burke", 23, "male", United_States, 0, Athlete.eSportTypes.running, 25);
         Athlete Francis_Lane = new Runner("Francis Lane", 24, "male", United_States, 0, Athlete.eSportTypes.running, 40);
@@ -97,7 +99,7 @@ public class Main {
         Athlete Nathaniel_Cartmell = new Runner("Nathaniel Cartmell", 23, "male", United_States, 0, Athlete.eSportTypes.running, 33);
         Athlete Morris_Kirksey = new Runner("g", 23, "male", United_States, 0, Athlete.eSportTypes.running, 32);
         //Italy
-        Athlete Salvatore_Antibo = new Runner("Thomas Burke", 21, "male", Italy, 0, Athlete.eSportTypes.jumping, 33);
+        Athlete Salvatore_Antibo = new Runner("Thomas Burke", 21, "male", Italy, 0, Athlete.eSportTypes.running, 33);
         Athlete Romeo_Bertini = new Runner("Romeo Bertini", 23, "male", Italy, 0, Athlete.eSportTypes.running, 40);
         //Germany
         Athlete Heinz_Fütterer = new Runner("g", 22, "male", Germany, 0, Athlete.eSportTypes.running, 35);
@@ -162,46 +164,194 @@ public class Main {
         Athlete António_Leitão = new Runner("António Leitão", 28, "Male", Portugal, 0, Athlete.eSportTypes.running, 41);
 
 
-        Athlete dennisMarkov = new RunnerAndJumper("DennisMarkov", 27, "Male", Denmark, 0, Athlete.eSportTypes.runningAndJumping, 44,5);
-        Athlete DiegoSimaona = new RunnerAndJumper("DiegoSimaona", 29, "Male", Spain, 0, Athlete.eSportTypes.runningAndJumping, 44,7);
-        Athlete Alex_Janero = new RunnerAndJumper("Alex Janero", 17, "Male", Israel, 0, Athlete.eSportTypes.runningAndJumping, 40,7);
-        Athlete donaldMarcisio = new RunnerAndJumper("Donald Marcisio", 21, "Male", Italy, 0, Athlete.eSportTypes.runningAndJumping, 41,4);
-        Athlete MichaelChernakov = new RunnerAndJumper("Michael Chernakov", 22, "Male", Israel, 0, Athlete.eSportTypes.runningAndJumping, 40,8);
-        Athlete neymarJunior = new RunnerAndJumper("Neymar Junior", 22, "Male", Brazil, 0, Athlete.eSportTypes.runningAndJumping, 34,5);
-        Athlete javierGarcia = new RunnerAndJumper("Javier Garcia", 33, "Male", Spain, 0, Athlete.eSportTypes.runningAndJumping, 41,8);
-        Athlete leonardoSilva = new RunnerAndJumper("Leonardo Silva", 29, "Male", Italy, 0, Athlete.eSportTypes.runningAndJumping, 40,8);
-        Athlete diegoKhizverg = new RunnerAndJumper("Diego Khizverg", 23, "Male", Australia, 0, Athlete.eSportTypes.runningAndJumping, 31,8);
-        Athlete AntónioSilva_ = new RunnerAndJumper("António Silva", 28, "Male", Portugal, 0, Athlete.eSportTypes.runningAndJumping, 42,9);
+        Athlete dennisMarkov = new RunnerAndJumper("DennisMarkov", 27, "Male", United_States, 0, Athlete.eSportTypes.runningAndJumping, 44, 5);
+        Athlete DiegoSimaona = new RunnerAndJumper("DiegoSimaona", 29, "Male", United_States, 0, Athlete.eSportTypes.runningAndJumping, 44, 7);
+        Athlete Alex_Janero = new RunnerAndJumper("Alex Janero", 17, "Male", Russian, 0, Athlete.eSportTypes.runningAndJumping, 40, 7);
+        Athlete donaldMarcisio = new RunnerAndJumper("Donald Marcisio", 21, "Male", Russian, 0, Athlete.eSportTypes.runningAndJumping, 41, 4);
+        Athlete MichaelChernakov = new RunnerAndJumper("Michael Chernakov", 22, "Male", Russian, 0, Athlete.eSportTypes.runningAndJumping, 40, 8);
+        Athlete neymarJunior = new RunnerAndJumper("Neymar Junior", 22, "Male", New_Zealand, 0, Athlete.eSportTypes.runningAndJumping, 34, 5);
+        Athlete javierGarcia = new RunnerAndJumper("Javier Garcia", 33, "Male", New_Zealand, 0, Athlete.eSportTypes.runningAndJumping, 41, 8);
+        Athlete leonardoSilva = new RunnerAndJumper("Leonardo Silva", 29, "Male", Jamaica, 0, Athlete.eSportTypes.runningAndJumping, 40, 8);
+        Athlete diegoKhizverg = new RunnerAndJumper("Diego Khizverg", 23, "Male", Jamaica, 0, Athlete.eSportTypes.runningAndJumping, 31, 8);
+        Athlete AntónioSilva = new RunnerAndJumper("António Silva", 28, "Male", France, 0, Athlete.eSportTypes.runningAndJumping, 42, 9);
+        Athlete benlulusilva = new RunnerAndJumper("Benlulu silva", 23, "Male", France, 0, Athlete.eSportTypes.runningAndJumping, 31, 8);
+        Athlete efraimMessi = new RunnerAndJumper("Efraim Messi", 23, "Male", Italy, 0, Athlete.eSportTypes.runningAndJumping, 25, 8);
+        Athlete vladimirMorinio = new RunnerAndJumper("Vladimir Morinio", 28, "Male", Spain, 0, Athlete.eSportTypes.runningAndJumping, 31, 7);
+        Athlete vladislavRoitenberg = new RunnerAndJumper("Vladislav Roitenberg", 23, "Male", Spain, 0, Athlete.eSportTypes.runningAndJumping, 40, 8);
+        Athlete diegoSalmonela = new RunnerAndJumper("Diego Salmonela", 23, "Male", Poland, 0, Athlete.eSportTypes.runningAndJumping, 33, 3);
+        Athlete coronaVirus = new RunnerAndJumper("Corona Virus", 23, "Male", France, 0, Athlete.eSportTypes.runningAndJumping, 34, 6);
+        Athlete effiHanamer = new RunnerAndJumper("Effi Hanamer", 27, "Male", Jamaica, 0, Athlete.eSportTypes.runningAndJumping, 33, 8);
+        Athlete artoruDikaprio = new RunnerAndJumper("Artoru Dikaprio", 23, "Male", jordan, 0, Athlete.eSportTypes.runningAndJumping, 31, 8);
+        Athlete galShalit = new RunnerAndJumper("Gal Shalit", 26, "Male", Israel, 0, Athlete.eSportTypes.runningAndJumping, 41, 8);
+        Athlete leonidZevel = new RunnerAndJumper("Leonid Zevel ", 25, "Male", jordan, 0, Athlete.eSportTypes.runningAndJumping, 33, 6);
+        Athlete ajikBululu = new RunnerAndJumper("Ajik Bululu", 33, "Male", New_Zealand, 0, Athlete.eSportTypes.runningAndJumping, 39, 4);
+        Athlete dimaSimonenko = new RunnerAndJumper("Dima Simonenko", 23, "Male", Ukraine, 0, Athlete.eSportTypes.runningAndJumping, 37, 5);
+        Athlete meirAmsalem = new RunnerAndJumper("Eran Zeavi", 29, "Male", Israel, 0, Athlete.eSportTypes.runningAndJumping, 35, 8);
+        Athlete eranZeavi = new RunnerAndJumper("Diego Khizverg", 40, "Male", Israel, 0, Athlete.eSportTypes.runningAndJumping, 35, 9);
+        Athlete effiHanmborgeri = new RunnerAndJumper("Effi Hanmborgeri", 18, "Male", Israel, 0, Athlete.eSportTypes.runningAndJumping, 34, 8);
+        Athlete tomerGolan = new RunnerAndJumper("Tomer Golan", 23, "Male", Israel, 0, Athlete.eSportTypes.runningAndJumping, 31, 2);
 
 
+        //Running teams:
+        Team running_UnitedStates = new Team(0, United_States, Athlete.eSportTypes.running);
+        running_UnitedStates.addAthlete(dennisMarkov);
+        running_UnitedStates.addAthlete(DiegoSimaona);
+        running_UnitedStates.addAthlete(Thomas_Burke);
+        running_UnitedStates.addAthlete(Francis_Lane);
+
+        Team running_Russian = new Team(0, Russian, Athlete.eSportTypes.running);
+        running_Russian.addAthlete(Alex_Janero);
+        running_Russian.addAthlete(donaldMarcisio);
+        running_Russian.addAthlete(MichaelChernakov);
+        running_Russian.addAthlete(Ilya_Markov);
+
+        Team running_NewZealand = new Team(0, New_Zealand, Athlete.eSportTypes.running);
+        running_NewZealand.addAthlete(neymarJunior);
+        running_NewZealand.addAthlete(javierGarcia);
+        running_NewZealand.addAthlete(John_Holland);
+        running_NewZealand.addAthlete(Arthur_Porritt);
+
+        Team running_Jamaica = new Team(0, Jamaica, Athlete.eSportTypes.running);
+        running_Jamaica.addAthlete(leonardoSilva);
+        running_Jamaica.addAthlete(diegoKhizverg);
+        running_Jamaica.addAthlete(Winthrop_Graham);
+        running_Jamaica.addAthlete(Bert_Cameron);
+
+        Team running_Israel = new Team(0, Israel, Athlete.eSportTypes.running);
+        running_Israel.addAthlete(meirAmsalem);
+        running_Israel.addAthlete(eranZeavi);
+        running_Israel.addAthlete(effiHanmborgeri);
+        running_Israel.addAthlete(tomerGolan);
+
+        Team running_France = new Team(0, France, Athlete.eSportTypes.running);
+        running_France.addAthlete(AntónioSilva);
+        running_France.addAthlete(benlulusilva);
+        running_France.addAthlete(Roger_Bambuck);
+        running_France.addAthlete(Claude_Piquemal);
 
 
+        //Jumping teams:
 
-        Team t = new Team(0, United_States, Athlete.eSportTypes.running);
-        t.addAthlete(Frank_Jarvis);
-      //  t.addAthlete(a);
-        Team t1 = new Team(0, Russian, Athlete.eSportTypes.jumping);
-//        t1.addAthlete(b);
-//        t1.addAthlete(d);
-
-        Team t2 = new Team(0, Jamaica, Athlete.eSportTypes.running);
-//        t2.addAthlete(e);
-//        t2.addAthlete(f);
-
-        Team t3 = new Team(0, Brazil, Athlete.eSportTypes.running);
-//        t3.addAthlete(g);
-//        t3.addAthlete(h);
-//        t3.addAthlete(i);
+        Team Jumping_Italy = new Team(0, Italy, Athlete.eSportTypes.jumping);
+        Jumping_Italy.addAthlete(Mario_Lanzi);
+        Jumping_Italy.addAthlete(Luigi_Beccali);
+        Jumping_Italy.addAthlete(efraimMessi);
 
 
-        Stadium s = new Stadium("a", "B", 200);
-//        TeamCompetition ps = new TeamCompetition(s, Athlete.eSportTypes.running, new Date(12, 12, 1996), new Clock(12, 15));
-//        ps.addTeams(t);
-//        ps.addTeams(t1);
-//        ps.addTeams(t2);
-//        ps.addTeams(t3);
-       // System.out.println(ps.toString());
-      //  System.out.println("The winners are : \n " + ps.getTeamsWinners());
+        Team Jumping_Spain = new Team(0, Spain, Athlete.eSportTypes.jumping);
+        Jumping_Spain.addAthlete(Valentí_Massana);
+        Jumping_Spain.addAthlete(vladimirMorinio);
+        Jumping_Spain.addAthlete(vladislavRoitenberg);
+
+
+        Team Jumping_Ukraine = new Team(0, Ukraine, Athlete.eSportTypes.jumping);
+        Jumping_Ukraine.addAthlete(dimaSimonenko);
+        Jumping_Ukraine.addAthlete(Bohdan_Bondarenko);
+        Jumping_Ukraine.addAthlete(Roman_Shchurenko);
+
+        Team Jumping_Poland = new Team(0, Poland, Athlete.eSportTypes.jumping);
+        Jumping_Poland.addAthlete(diegoSalmonela);
+        Jumping_Poland.addAthlete(Ryszard_Podlas);
+        Jumping_Poland.addAthlete(Jan_Werner);
+
+        Team Jumping_France = new Team(0, France, Athlete.eSportTypes.jumping);
+        Jumping_France.addAthlete(coronaVirus);
+        Jumping_France.addAthlete(Paul_Genevay);
+        Jumping_France.addAthlete(Bernard_Laidebeur);
+
+
+//creating stadiums:
+        Stadium CampNou = new Stadium("Camp Nou", "Barcelona", 99354);
+        Stadium EstadioSantiagoBernabéu = new Stadium("Estadio Santiago Bernabéu", "Madrid", 85454);
+        Stadium EstadioMetropolitano = new Stadium("Estadio Metropolitano", "Madrid", 68456);
+        Stadium EstadioBenitoVillamarín = new Stadium("Estadio Benito Villamarín", "Madrid", 60724);
+        Stadium EstadioRamónSánchezPizjuán = new Stadium("Estadio Ramón Sánchez Pizjuán", "Sevilia", 45500);
+        Stadium ElMolinón = new Stadium("El Molinón", "Gijón", 30000);
+        Stadium EstadioNuevoArcángel = new Stadium("Estadio Nuevo Arcángel", "Córdoba", 15425);
+        Stadium NouEstadi = new Stadium("Nou Estadi", "Tarragona", 12000);
+
+
+        TeamCompetition jump_c = new TeamCompetition(CampNou, eran, Athlete.eSportTypes.jumping, new Date(1, 12, 2020), new Clock(8, 0));
+        jump_c.addTeams(Jumping_Italy);
+        jump_c.addTeams(Jumping_Spain);
+        jump_c.addTeams(Jumping_Ukraine);
+        jump_c.addTeams(Jumping_Poland);
+        jump_c.addTeams(Jumping_France);
+
+        TeamCompetition run_c = new TeamCompetition(EstadioSantiagoBernabéu, or, Athlete.eSportTypes.running, new Date(2, 12, 2020), new Clock(12, 0));
+        run_c.addTeams(running_UnitedStates);
+        run_c.addTeams(running_NewZealand);
+        run_c.addTeams(running_Russian);
+        run_c.addTeams(running_Jamaica);
+        run_c.addTeams(running_Israel);
+        run_c.addTeams(running_France);
+
+        PersonalCompetition personal_run_Entervales = new PersonalCompetition(EstadioMetropolitano, effi, Athlete.eSportTypes.running, new Date(3, 12, 2020), new Clock(17, 0));
+        personal_run_Entervales.addAthlete(Archie_Hahn);
+        personal_run_Entervales.addAthlete(Nathaniel_Cartmell);
+        personal_run_Entervales.addAthlete(Salvatore_Antibo);
+        personal_run_Entervales.addAthlete(António_Leitão);
+        personal_run_Entervales.addAthlete(Fermín_Cacho);
+        personal_run_Entervales.addAthlete(José_Pedraza);
+        personal_run_Entervales.addAthlete(Oleksandr_Krykun);
+        personal_run_Entervales.addAthlete(Denis_Kapustin);
+        personal_run_Entervales.addAthlete(Chen_Ding);
+        personal_run_Entervales.addAthlete(Edson_Ribeiro);
+        personal_run_Entervales.addAthlete(Ruhi_Sarialp);
+        personal_run_Entervales.addAthlete(Harry_Jerome);
+        personal_run_Entervales.addAthlete(Wilson_Kipketer);
+        personal_run_Entervales.addAthlete(Jerzy_Pietrzyk);
+        personal_run_Entervales.addAthlete(Kevan_Gosper);
+        personal_run_Entervales.addAthlete(Manfred_Germar);
+        personal_run_Entervales.addAthlete(effiHanamer);
+        personal_run_Entervales.addAthlete(artoruDikaprio);
+
+
+        PersonalCompetition personal_run_300m = new PersonalCompetition(EstadioBenitoVillamarín, timor, Athlete.eSportTypes.running, new Date(3, 12, 2020), new Clock(11, 0));
+        personal_run_300m.addAthlete(Rui_Silva);
+        personal_run_300m.addAthlete(Javier_García);
+        personal_run_300m.addAthlete(Raúl_González);
+        personal_run_300m.addAthlete(Oleksandr_Bagach);
+        personal_run_300m.addAthlete(Cai_Zelin);
+        personal_run_300m.addAthlete(André_da_Silva);
+        personal_run_300m.addAthlete(Baron_Porritt);
+        personal_run_300m.addAthlete(Eşref_Apak);
+        personal_run_300m.addAthlete(Ben_Johnson);
+        personal_run_300m.addAthlete(Ernst_Schultz);
+        personal_run_300m.addAthlete(Usain_Bolt);
+        personal_run_300m.addAthlete(Zbigniew_Jaremski);
+        personal_run_300m.addAthlete(David_Lean);
+        personal_run_300m.addAthlete(Jocelyn_Delecour);
+        personal_run_300m.addAthlete(Heinz_Fütterer);
+        personal_run_300m.addAthlete(Romeo_Bertini);
+        personal_run_300m.addAthlete(Morris_Kirksey);
+
+
+        PersonalCompetition personal_jump = new PersonalCompetition(EstadioRamónSánchezPizjuán, omri, Athlete.eSportTypes.jumping, new Date(4, 12, 2020), new Clock(11, 0));
+        personal_jump.addAthlete(galShalit);
+        personal_jump.addAthlete(leonidZevel);
+        personal_jump.addAthlete(ajikBululu);
+        personal_jump.addAthlete(Jordi_Llopart);
+        personal_jump.addAthlete(Ernesto_Canto);
+        personal_jump.addAthlete(Vladimir_Andreyev);
+        personal_jump.addAthlete(Wang_Zhen);
+        personal_jump.addAthlete(Mike_Ryan);
+        personal_jump.addAthlete(Robson_da_Silva);
+        personal_jump.addAthlete(Andrzej_Zieliński);
+        personal_jump.addAthlete(Donovan_Bailey);
+        personal_jump.addAthlete(Devon_Morris);
+        personal_jump.addAthlete(Leon_Gregory);
+        personal_jump.addAthlete(Walter_Tewksbury);
+        personal_jump.addAthlete(Lothar_Knörzer);
+
+
+        Olympics spain2020 = new Olympics(new Date(1, 12, 2020), new Date(16, 12, 2020));
+        spain2020.addTeamCompetition(jump_c);
+        spain2020.addTeamCompetition(run_c);
+        spain2020.addPersonalCompetition(personal_run_Entervales);
+        spain2020.addPersonalCompetition(personal_run_300m);
+        spain2020.addPersonalCompetition(personal_jump);
+
     }
 }
 

@@ -31,6 +31,13 @@ public class TeamCompetition {
         this.competition = new Competition<TeamCompetition>();
     }
 
+    public Athlete.eSportTypes getSportTypes() {
+        return sportTypes;
+    }
+
+    public void setSportTypes(Athlete.eSportTypes sportTypes) {
+        this.sportTypes = sportTypes;
+    }
 
     public List<Team> getListOfTeams() {
         return teams;
