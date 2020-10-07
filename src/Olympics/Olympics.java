@@ -52,24 +52,54 @@ public class Olympics {
         }
     }
 
-    public String getPersonalDetails() {
+    public String getPersonalDetailsByRunning() {
+        Competition<Competition> personalCompetitionInRunning = new Competition<Competition>();
         for (int i = 0; i < numOfPersonalsCompetitions; i++) {
-            sortAthletes(personalCompetitions.getCompetitionType().getAllAthletes());
+            if (personalCompetitions.getCompetitionType().getSportTypes() == Athlete.eSportTypes.running) {
+                personalCompetitionInRunning.add(personalCompetitions);
+                sortAthletes(personalCompetitions.getCompetitionType().getAllAthletes());
+            }
         }
 
-        return sortPersonalCompetition((List) personalCompetitions);
+        return sortPersonalCompetition((List) personalCompetitionInRunning);
     }
 
-    public String getTeamDetails() {
-        for (int j = 0; j < numOfTeamsCompetition; j++) {
-            sortTeams(teamCompetitions.getCompetitionType().getListOfTeams());
+    public String getPersonalDetailsByJumping() {
+        Competition<Competition> personalCompetitionInJumping = new Competition<Competition>();
+        for (int i = 0; i < numOfPersonalsCompetitions; i++) {
+            if (personalCompetitions.getCompetitionType().getSportTypes() == Athlete.eSportTypes.running) {
+                personalCompetitionInJumping.add(personalCompetitions);
+                sortAthletes(personalCompetitions.getCompetitionType().getAllAthletes());
+            }
         }
-        return sortList((List) teamCompetitions);
+
+        return sortPersonalCompetition((List) personalCompetitionInJumping);
+    }
+
+    public String getTeamDetailsByRunning() {
+        Competition<Competition> teamCompetitionOnlyInRunning = new Competition<Competition>();
+        for (int j = 0; j < numOfTeamsCompetition; j++) {
+            if (teamCompetitions.getCompetitionType().getSportTypes() == Athlete.eSportTypes.running) {
+                teamCompetitionOnlyInRunning.add(teamCompetitions);
+                sortTeams(teamCompetitions.getCompetitionType().getListOfTeams());
+            }
+        }
+        return sortList((List) (teamCompetitionOnlyInRunning));
+    }
+
+    public String getTeamDetailsByJumping() {
+        Competition<Competition> teamCompetitionOnlyInJumping = new Competition<Competition>();
+        for (int j = 0; j < numOfTeamsCompetition; j++) {
+            if (teamCompetitions.getCompetitionType().getSportTypes() == Athlete.eSportTypes.jumping) {
+                teamCompetitionOnlyInJumping.add(teamCompetitions);
+                sortTeams(teamCompetitions.getCompetitionType().getListOfTeams());
+            }
+        }
+        return sortList((List) teamCompetitionOnlyInJumping);
     }
 
     public String getCountriesDetails() {
-        //    sortCountryByTeamCompetition(teamCompetitions.getCompetitionType().getCompetition());
-        //    sortCountryByPersonalCompetition(personalCompetitions.getCompetitionType().getCompetition());
+
         return sortCountriesByMedals(allCountries);
     }
 
@@ -78,14 +108,14 @@ public class Olympics {
         Comparator<Country> compareByCountries = new Comparator<Country>() {
             public int compare(Country o1, Country o2) {
                 searchSameCountries(o1, o2);
-                    if (o1.getNumOfMedals() < o2.getNumOfMedals()) {
-                        return -1;
-                    } else if (o1.getNumOfMedals() == o2.getNumOfMedals()) {
-                        return 0;
-                    }
-                    return 1;
+                if (o1.getNumOfMedals() < o2.getNumOfMedals()) {
+                    return -1;
+                } else if (o1.getNumOfMedals() == o2.getNumOfMedals()) {
+                    return 0;
                 }
-            };
+                return 1;
+            }
+        };
         Collections.sort(allCountries, compareByCountries);
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < allCountries.size(); i++) {
@@ -116,38 +146,8 @@ public class Olympics {
     }
 
 
-//    private void sortCountryByPersonalCompetition(List<Country> listOfCountries) {
-//        Comparator<Country> compareByCountries = new Comparator<Country>() {
-//            public int compare(Country o1, Country o2) {
-//                if (o1.getNumOfMedals() < o2.getNumOfMedals()) {
-//                    return -1;
-//                } else if (o1.getNumOfMedals() == o2.getNumOfMedals()) {
-//                    return 0;
-//                }
-//                return 1;
-//            }
-//        };
-//        Collections.sort(listOfCountries, compareByCountries);
-//    }
-
-//    private void sortCountryByTeamCompetition(List listOfCountries) {
-//        Comparator<Country> compareByCountries = new Comparator<Country>() {
-//            public int compare(Country o1, Country o2) {
-//                if (o1.getNumOfMedals() < o2.getNumOfMedals()) {
-//                    return -1;
-//                } else if (o1.getNumOfMedals() == o2.getNumOfMedals()) {
-//                    return 0;
-//                }
-//                return 1;
-//            }
-//        };
-//        Collections.sort(listOfCountries, compareByCountries);
-//
-//    }
-
     public static <E> String sortList(List<TeamCompetition> list) {
         Comparator<TeamCompetition> compareByMedals = new Comparator<TeamCompetition>() {
-
             public int compare(TeamCompetition o1, TeamCompetition o2) {
                 if (o1.getListOfTeams().get(0).getNumOfTeamsMedals() < o2.getListOfTeams().get(0).getNumOfTeamsMedals()) {
                     return -1;
@@ -166,6 +166,7 @@ public class Olympics {
 
 
     }
+
 
     private void sortTeams(List<Team> listOfTeams) {
         Comparator<Team> compareByTeamsMedals = new Comparator<Team>() {
@@ -202,27 +203,6 @@ public class Olympics {
         return sb.toString();
 
     }
-    public String getWinnersInOlympicsByPersonalCompetitions(){
-        String personalWinners="";
-        for(int i=0; i < 3; i++){
-           personalWinners+= personalCompetitions.getCompetitionType().getAllAthletes().get(i)+"\n";
-        }
-        return personalWinners;
-    }
-    public String getWinnersInOlympicsByTeamCompetitions(){
-        String teamWinners="";
-        for(int i=0; i < 3; i++){
-            teamWinners+= teamCompetitions.getCompetitionType().getListOfTeams()+"\n";
-        }
-        return teamWinners;
-    }
-    public String getWinnersInOlympicsByCountriesCompetitions(){
-        String countriesWinners="";
-        for(int i=0; i < 3; i++){
-            countriesWinners+= allCountries.get(i)+"\n";
-        }
-        return countriesWinners;
-    }
 
     public static void sortAthletes(List<Athlete> allAthletes) {
         Comparator<Athlete> compareByMedals = new Comparator<Athlete>() {
@@ -237,19 +217,72 @@ public class Olympics {
 
     }
 
+    public String getWinnersInOlympicsByPersonalCompetitionsInRunning() {
+        String personalWinners = "";
+        if (teamCompetitions.getCompetitionType().getSportTypes() == Athlete.eSportTypes.running) {
+            for (int i = 0; i < 3; i++) {
+                personalWinners += personalCompetitions.getCompetitionType().getAllAthletes().get(i) + "\n";
+            }
+        }
+        return personalWinners;
+    }
+
+    public String getWinnersInOlympicsByPersonalCompetitionsInJumping() {
+        String personalWinners = "";
+        if (teamCompetitions.getCompetitionType().getSportTypes() == Athlete.eSportTypes.jumping) {
+            for (int i = 0; i < 3; i++) {
+                personalWinners += personalCompetitions.getCompetitionType().getAllAthletes().get(i) + "\n";
+            }
+        }
+        return personalWinners;
+    }
+
+    public String getWinnersInOlympicsByTeamCompetitionsByRunning() {
+        String teamWinners = "";
+        if (teamCompetitions.getCompetitionType().getSportTypes() == Athlete.eSportTypes.running) {
+            for (int i = 0; i < 3; i++) {
+                teamWinners += teamCompetitions.getCompetitionType().getListOfTeams().get(i) + "\n";
+            }
+        }
+        return teamWinners;
+    }
+
+    public String getWinnersInOlympicsByTeamCompetitionsByJumping() {
+        String teamWinners = "";
+        if (teamCompetitions.getCompetitionType().getSportTypes() == Athlete.eSportTypes.jumping) {
+            for (int i = 0; i < 3; i++) {
+                teamWinners += teamCompetitions.getCompetitionType().getListOfTeams().get(i) + "\n";
+            }
+        }
+        return teamWinners;
+    }
+
+
+    public String getWinnersInOlympicsByCountriesCompetitions() {
+        String countriesWinners = "";
+        for (int i = 0; i < 3; i++) {
+            countriesWinners += allCountries.get(i) + "\n";
+        }
+        return countriesWinners;
+    }
+
+
     @Override
     public String toString() {
-         StringBuffer sb = new StringBuffer("Olympics");
-         sb.append( " Welcome to the olympics games!!! " + '\n');
-         sb.append("The olympics occur in " + olympicLocation + " in:" + startDate + '\n');
-         sb.append("The list of the countries : " + getCountriesDetails() + '\n');
-         sb.append( " The list of the teams : " + getTeamDetails() + '\n');
-         sb.append(" The list of the athletes : " + getPersonalDetails() + '\n');
-        sb.append("The teams winners:  " +getWinnersInOlympicsByTeamCompetitions() + "\n");
-        sb.append("The personality winners:  " +getWinnersInOlympicsByPersonalCompetitions() + "\n");
-        sb.append("The countries winners:  " +getWinnersInOlympicsByCountriesCompetitions() + "\n");
+        StringBuffer sb = new StringBuffer("Olympics");
+        sb.append(" Welcome to the olympics games!!! " + '\n');
+        sb.append("The olympics occur in " + olympicLocation + " in:" + startDate + '\n');
+        sb.append("The list of the countries : " + getCountriesDetails() + '\n');
+        sb.append(" The list of the teams in running: " + getTeamDetailsByRunning() + '\n');
+        sb.append(" The list of the teams in jumping : " + getTeamDetailsByJumping() + '\n');
+        sb.append(" The list of the personalies in jumping : " + getPersonalDetailsByJumping() + '\n');
+        sb.append(" The list of the teams in running : " + getPersonalDetailsByRunning() + "\n\n\n");
 
-
+        sb.append("The teams winners in running:  " + getWinnersInOlympicsByTeamCompetitionsByRunning() + "\n");
+        sb.append("The teams winners in jumping:  " + getWinnersInOlympicsByTeamCompetitionsByJumping() + "\n");
+        sb.append("The personality winners in running:  " + getWinnersInOlympicsByPersonalCompetitionsInRunning() + "\n");
+        sb.append("The personality winners in jumping:  " + getWinnersInOlympicsByTeamCompetitionsByJumping() + "\n");
+        sb.append("The countries winners:  " + getWinnersInOlympicsByCountriesCompetitions() + "\n");
         return sb.toString();
     }
 }

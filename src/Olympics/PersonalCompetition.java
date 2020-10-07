@@ -30,6 +30,9 @@ public class PersonalCompetition {
         this.competition = new Competition<PersonalCompetition>();
     }
 
+    public Athlete.eSportTypes getSportTypes() {
+        return sportTypes;
+    }
 
     public List<Athlete> getAllAthletes() {
         return allAthletes;
