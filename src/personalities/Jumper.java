@@ -1,24 +1,30 @@
 package personalities;
 
-public  class Jumper extends Athlete implements iJumper {
-    private String typeOfSport;
+import Olympics.Country;
 
-    public Jumper(String name, int age, String gender, String country, int numOfMedals,String typeOfSport) {
-        super(name, age, gender, country, numOfMedals);
-        this.typeOfSport = typeOfSport;
+public  class Jumper extends Athlete implements iJumper {
+    private int highestJumping;
+
+    public Jumper(String name, int age, String gender, Country country, int numOfMedals, eSportTypes sportType, int highestJumping) {
+        super(name, age, gender, country, numOfMedals,sportType);
+        this.highestJumping = highestJumping;
     }
 
-    public String getTypeOfSport() {
-        return typeOfSport;
+    public int getHighestJumping() {
+        return highestJumping;
+    }
+
+    public void setHighestJumping(int highestJumping) {
+        this.highestJumping = highestJumping;
     }
 
     @Override
     public String toString() {
-        return "Jumper: " + " typeOfSport - " + typeOfSport  +  " tostring = " + super.toString() ;
+        return "Jumper: "  + super.toString() + ", highest jumping: " + highestJumping + " meters " + " ]" + '\n';
     }
 
     @Override
     public String infoJumper() {
-        return "Jumper[ " + "typeOfSport='" + typeOfSport  + ']';
+        return "Jumper[ " + "highest jumping: " + highestJumping   + " meters " + ']';
     }
 }

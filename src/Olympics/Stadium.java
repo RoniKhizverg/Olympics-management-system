@@ -1,4 +1,4 @@
-package Olympic;
+package Olympics;
 
 public class Stadium {
     private String stadiumName;

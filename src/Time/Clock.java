@@ -9,6 +9,10 @@ public class Clock {
                 this.minute = minutes;
             }
         }
+        public Clock(Clock other){
+            this.hour = other.hour;
+            this.minute =other.minute;
+        }
 
         public static boolean checkClock(int hours, int minutes) throws Exception {
             if (0 > hours || hours > 24) {

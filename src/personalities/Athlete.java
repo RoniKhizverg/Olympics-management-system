@@ -1,24 +1,34 @@
 package personalities;
 
-public abstract class Athlete extends Person {
-    private int numOfMedals;
+import Olympics.Country;
 
-    public Athlete(String name, int age, String gender, String country,int numOfMedals) {
+public abstract class Athlete extends Person {
+    public enum eSportTypes {running , jumping , runningAndJumping};
+
+
+    private int numOfPersonalMedals;
+    private eSportTypes sportType;
+    public Athlete(String name, int age, String gender, Country country, int numOfMedals, eSportTypes sportType) {
         super(name, age, gender, country);
-        this.numOfMedals = 0;
+        this.sportType = sportType;
+        this.numOfPersonalMedals = 0;
     }
 
     public int getNumOfMedals() {
 
-        return numOfMedals;
+        return numOfPersonalMedals;
+    }
+
+    public eSportTypes getSportType() {
+        return sportType;
     }
 
     public void addNumOfMedals() {
-        this.numOfMedals++;
+        this.numOfPersonalMedals++;
     }
 
     @Override
     public String toString() {
-        return super.toString() + " \n Athlete [" + "numOfMedals=" + numOfMedals + ']';
+        return super.toString()  + "numOfMedals: " + numOfPersonalMedals + ", sport type "  + sportType;
     }
 }

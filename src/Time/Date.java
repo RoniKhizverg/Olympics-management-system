@@ -12,7 +12,7 @@ public class Date {
         private final static int[] DAYS_MONTHS = { 31, 28, 31, 30, 31, 30, 31, 31,
                 30, 31, 30, 31 };
 
-        public Date(int day, int month, int year, int hour, int minute) {
+        public Date(int day, int month, int year) {
             if (year >= 2000 && year <= 2020) {
                 this.year = year;
                 nameDayOfTheWeek = "" + year;
@@ -54,7 +54,8 @@ public class Date {
         }
 
 
-        public String toString() {
+
+    public String toString() {
             String sb = new String();
             sb = day + "/" + month + "/" + year;
             return sb;

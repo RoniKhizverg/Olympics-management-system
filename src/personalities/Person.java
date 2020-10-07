@@ -1,13 +1,15 @@
 package personalities;
 
+import Olympics.Country;
+
 public abstract class Person {
     private String name;
     private int age;
     private String gender;
-    private String country;
+    private Country country;
 
-    public Person(String name, int age, String gender, String country){
-        this.name= name;
+    public Person(String name, int age, String gender, Country country) {
+        this.name = name;
         setAge(age);
         this.gender = gender;
         setCountry(country);
@@ -30,17 +32,17 @@ public abstract class Person {
         return gender;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 
     @Override
     public String toString() {
-        return "Person [Name : " + name + " + Age : "+ age + ", Gender : "+ gender + ", Country : " + country + " ]";
+        return " [Name: " + name + " + Age: " + age + ", Gender: " + gender + ", Country: " + country + ", ";
 
     }
 }
