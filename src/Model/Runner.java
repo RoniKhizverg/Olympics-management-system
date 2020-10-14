@@ -1,12 +1,11 @@
-package personalities;
+package Model;
 
-import Olympics.Country;
 
 public class Runner extends Athlete implements  iRunner {
     private int highestSpeed;
 
-    public Runner(String name, int age, String gender, Country country, int numOfMedals, eSportTypes sportType , int highestSpeed) {
-        super(name, age, gender, country, numOfMedals,sportType);
+    public Runner(String name, int age, String gender , int highestSpeed) {
+        super(name, age, gender);
         this.highestSpeed = highestSpeed;
     }
 
@@ -20,11 +19,11 @@ public class Runner extends Athlete implements  iRunner {
 
     @Override
     public String toString() {
-        return  "Runner:"   + super.toString() + ", highest speed:" + highestSpeed  + " kmh" +" ]" +'\n' ;
+        return  "Runner:"   + super.toString() + ", highest speed: " + highestSpeed  + " kmh"  +'\n' ;
     }
 
     @Override
     public String runnerInfo() {
-        return "Runner[ " + "highest speed:" + highestSpeed  ;
+        return  "highest speed: " + highestSpeed  ;
     }
 }

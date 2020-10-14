@@ -1,12 +1,11 @@
-package personalities;
+package Model;
 
-import Olympics.Country;
 
 public class JumpingReferee extends Referee {
     private int numOfJumpingContestsRefereed;
 
-    public JumpingReferee(String name, int age, String gender, Country country, int judgmentExperience, eJudgingType judgingType, int numOfJumpingContestsRefereed) {
-        super(name, age, gender, country, judgmentExperience,judgingType);
+    public JumpingReferee(String name, int age, String gender, int judgmentExperience, int numOfJumpingContestsRefereed) {
+        super(name, age, gender, judgmentExperience);
         this.numOfJumpingContestsRefereed = numOfJumpingContestsRefereed;
     }
 
@@ -20,6 +19,6 @@ public class JumpingReferee extends Referee {
 
     @Override
     public String toString() {
-        return "Jumping Referee: "  + super.toString() + ']' ;
+        return "Jumping Referee: "  + super.toString() + ']' + "\n" ;
     }
 }
