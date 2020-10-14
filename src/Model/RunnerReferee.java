@@ -1,13 +1,12 @@
-package personalities;
+package Model;
 
-import Olympics.Country;
 
 public class RunnerReferee extends Referee {
     private int numOfRunningContestsRefereed;
 
 
-    public RunnerReferee(String name, int age, String gender, Country country, int judgmentExperience, eJudgingType judgingType, int numOfRunningContestsRefereed) {
-        super(name, age, gender, country, judgmentExperience, judgingType );
+    public RunnerReferee(String name, int age, String gender, int judgmentExperience, int numOfRunningContestsRefereed) {
+        super(name, age, gender, judgmentExperience );
         this.numOfRunningContestsRefereed = numOfRunningContestsRefereed;
     }
 
@@ -21,7 +20,7 @@ public class RunnerReferee extends Referee {
 
     @Override
     public String toString() {
-        return "Runner Referee: " + "num of running contest refereed: " + numOfRunningContestsRefereed + super.toString() + ']' ;
+        return "Runner Referee: " + super.toString() + "num of running contest refereed: " + numOfRunningContestsRefereed+ ']'+ "\n" ;
     }
 
 }

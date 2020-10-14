@@ -1,4 +1,4 @@
-package personalities;
+package Model;
 
 public interface iRunner {
     public String runnerInfo();

@@ -1,4 +1,4 @@
-package personalities;
+package Model;
 
 public interface iJumper {
     public String infoJumper();
