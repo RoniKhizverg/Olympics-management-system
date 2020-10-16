@@ -5,11 +5,12 @@ import java.util.*;
 
 
 public class PersonalCompetition extends Competition {
-	private List<Athlete> personalCompetitionAthletes;
+	private List<Athlete> personalCompetitionAthletes,winners;
 
 	public PersonalCompetition(Referee referee, Team.eSportTypes sportTypes, Date startDate, Stadium stadium) throws Exception {
 		super(referee, sportTypes, startDate,stadium);
 		this.personalCompetitionAthletes = new ArrayList<Athlete>();
+		winners = new ArrayList<Athlete>();
 	}
 
 	public List<Athlete> getPersonalCompetitionAthletes() {
@@ -30,8 +31,7 @@ public class PersonalCompetition extends Competition {
 		return new Exception("You cant add this type of athlete to this team");
 }
 
-public List<Athlete> getWinners() {
-	List<Athlete> winners = new ArrayList<Athlete>();
+public List<Athlete> getWinnersInCompetition() {
 	int numOfWinners = 0;
 	while (numOfWinners != 3) {
 		int randomWinners = (int) (Math.random() * personalCompetitionAthletes.size());
@@ -45,7 +45,11 @@ public List<Athlete> getWinners() {
 	return winners;
 }
 
-public static boolean checkIfNoRepeatWinner(List<Athlete> allWinners, Athlete winner) {
+	public List<Athlete> getWinners() {
+		return winners;
+	}
+
+	public static boolean checkIfNoRepeatWinner(List<Athlete> allWinners, Athlete winner) {
 	for (int i = 0; i < allWinners.size(); i++) {
 		if (allWinners.get(i).equals(winner)) {
 			return false;
@@ -73,7 +77,6 @@ public void sortByNumOfmedals() {
 public String toString() {
 	StringBuffer sb = new StringBuffer("Personal Competition  ");
 	sb.append("Num of participatants: " + personalCompetitionAthletes.size() + "\n");
-	getWinners();
 	for (int i = 0; i < personalCompetitionAthletes.size(); i++) {
 		sb.append(personalCompetitionAthletes.get(i) + "\n");
 	}
