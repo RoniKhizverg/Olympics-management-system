@@ -6,13 +6,14 @@ import java.util.*;
 
 public class Olympics {
 	private String olympicLocation;
-	List<Competition> competitions;
+	private List<Competition> competitions;
 	private List<Country> allCountries;
 	private List<Athlete> allAthletes; // divide countries to athletes and to teams
 	private List<Team> allTeams;
 	private List<Referee> allReferees;
 	private Date endDate;
 	private Date startDate;
+	private boolean[]winnersInCompetition;
 
 	public Olympics(String olympicLocation, Date startDate, Date endDate) {
 		this.olympicLocation = olympicLocation;
@@ -23,6 +24,7 @@ public class Olympics {
 		this.allAthletes = new ArrayList<Athlete>();
 		this.allTeams = new ArrayList<Team>();
 		this.allReferees = new ArrayList<Referee>();
+		winnersInCompetition = new boolean[4];
 	}
 
 	public void addCompetitons(Competition newCompetition) {
@@ -157,6 +159,29 @@ public class Olympics {
 		return allAthletes;
 	}
 
+	public String getWinnersInSpecificCompetition(Competition competition){
+		String getWinners="";
+		for (int i=0; i < competitions.size();i++) {
+			if (competition.getStadium().equals(competitions.get(i).getStadium()) && winnersInCompetition[i] == false) {
+				if (competition instanceof PersonalCompetition) {
+					getWinners = ((PersonalCompetition) competition).getWinnersInCompetition().toString();
+					winnersInCompetition[i] = true;
+				} else if (competition instanceof TeamCompetition) {
+					getWinners = ((TeamCompetition) competition).getWinnersinTeams().toString();
+					winnersInCompetition[i] = true;
+				}
+			}
+			if (winnersInCompetition[i] == false) {
+				if (competition instanceof PersonalCompetition) {
+					getWinners = ((PersonalCompetition) competition).getWinners().toString();
+
+				} else if (competition instanceof TeamCompetition) {
+					getWinners = ((TeamCompetition) competition).getTeamsWinners().toString();
+				}
+			}
+		}
+		return  getWinners;
+	}
 
 
 	public List<Competition> getCompetitions() {
@@ -227,15 +252,6 @@ public class Olympics {
 
 	}
 
-	public int getIndetifyRunenrsandJumpersAthletes() {
-		int numOfRunneresAndJumpers =0;
-		for(int i=0; i < getAllAthletes().size();i++) {
-			if(getAllAthletes().get(i) instanceof RunnerAndJumper) {
-				numOfRunneresAndJumpers++;
-			}
-		}
-		return numOfRunneresAndJumpers;
-	}
 
 	public List<Athlete> sortPersonalCompetition(List<Athlete> athletes) {
 		Comparator<Athlete> compareByMedals = new Comparator<Athlete>() {
@@ -299,6 +315,7 @@ public class Olympics {
 	}
 
 	public String getWinnersInOlympicsByCountriesCompetitions() {
+		updateMdealsInCountry();
 		String countriesWinners = "";
 		sortCountriesByMedals(allCountries);
 		if (allCountries.size() >= 3) {
@@ -314,14 +331,14 @@ public class Olympics {
 		StringBuffer sb = new StringBuffer("Olympics" + "\n");
 		// getAllAthleteAndTeams();
 		// getInformationTeamsInRunningAndJumping();
-		for (Competition competitions : competitions) {
-			if(competitions instanceof TeamCompetition) {
-				((TeamCompetition) competitions).getWinnersiTeams();
-			}
-			if(competitions instanceof PersonalCompetition) {
-				((PersonalCompetition) competitions).getWinners();
-			}
-		}
+//		for (Competition competitions : competitions) {
+//			if(competitions instanceof TeamCompetition) {
+//				((TeamCompetition) competitions).;
+//			}
+//			if(competitions instanceof PersonalCompetition) {
+//				((PersonalCompetition) competitions).getWinners();
+//			}
+//		}
 		// }
 		// for (TeamCompetition teamCompetition : allTeamslCompetitions) {
 		// teamCompetition.getWinners();

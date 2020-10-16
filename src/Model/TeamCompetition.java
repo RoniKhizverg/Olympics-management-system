@@ -8,11 +8,12 @@ import java.util.List;
 
 
 public class TeamCompetition extends Competition {
-	private List<Team> competitionTeams;
+	private List<Team> competitionTeams,teamWinners;
 
 	public TeamCompetition(Referee referee, Team.eSportTypes sportTypes, Date startDate, Stadium stadium) throws Exception {
 		super(referee, sportTypes, startDate,stadium);
 		this.competitionTeams = new ArrayList<Team>();
+		teamWinners = new ArrayList<Team>();
 	}
 
 	public List<Team> getCompetitionTeams() {
@@ -28,20 +29,20 @@ public class TeamCompetition extends Competition {
 			throw new Exception("you cant to add this team to the specific in this competiton");
 	}
 
-	public List<Team> getWinnersiTeams() {
+	public List<Team> getWinnersinTeams() {
 		int numOfWinners = 0;
-		List<Team> winners = new ArrayList<Team>();
 		while (numOfWinners != 3) {
 			int randomWinners = (int) (Math.random() * competitionTeams.size());
-			if (checkIfNoRepeatWinner(winners, competitionTeams.get(randomWinners))) {
-				winners.add(competitionTeams.get(randomWinners));
+			if (checkIfNoRepeatWinner(teamWinners, competitionTeams.get(randomWinners))) {
+				teamWinners.add(competitionTeams.get(randomWinners));
 				competitionTeams.get(randomWinners).addNumOfMedals();
 				numOfWinners++;
 			}
 		}
 		sortByNumOfMedals();
-		return winners;
+		return teamWinners;
 	}
+
 
 	public void sortByNumOfMedals() {
 		Comparator<Team> compareByTeamsMedals = new Comparator<Team>() {
@@ -59,6 +60,10 @@ public class TeamCompetition extends Competition {
 
 	}
 
+	public List<Team> getTeamsWinners() {
+		return teamWinners;
+	}
+
 	public static boolean checkIfNoRepeatWinner(List<Team> allWinners, Team team) {
 		for (int i = 0; i < allWinners.size(); i++) {
 			if (allWinners.get(i).equals(team)) {
@@ -73,7 +78,6 @@ public class TeamCompetition extends Competition {
 	public String toString() {
 		final StringBuffer sb = new StringBuffer();
 		sb.append(" num Of participating teams: ").append(competitionTeams.size() + "\n");
-		getWinnersiTeams();
 		for (int i = 0; i < competitionTeams.size(); i++) {
 			sb.append(competitionTeams.get(i).toString() + "\n");
 		}
