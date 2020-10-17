@@ -9,6 +9,12 @@ public  class Jumper extends Athlete implements iJumper {
         this.highestJumping = highestJumping;
     }
 
+    public Jumper(String name, int age, String gender, int highestJumping,int numOfMedals) {
+        super(name, age, gender);
+        this.highestJumping = highestJumping;
+        numOfMedals = getNumOfMedals();
+    }
+
     public int getHighestJumping() {
         return highestJumping;
     }

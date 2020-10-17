@@ -1,6 +1,9 @@
 package Model;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.*;
 
 
@@ -159,29 +162,32 @@ public class Olympics {
 		return allAthletes;
 	}
 
-	public String getWinnersInSpecificCompetition(Competition competition){
-		String getWinners="";
+	public ObservableList getWinnersInSpecificCompetition(Competition competition){
+		List list = new ArrayList();
 		for (int i=0; i < competitions.size();i++) {
 			if (competition.getStadium().equals(competitions.get(i).getStadium()) && winnersInCompetition[i] == false) {
 				if (competition instanceof PersonalCompetition) {
-					getWinners = ((PersonalCompetition) competition).getWinnersInCompetition().toString();
+					list.addAll(((PersonalCompetition) competition).getWinnersInCompetition());
 					winnersInCompetition[i] = true;
 				} else if (competition instanceof TeamCompetition) {
-					getWinners = ((TeamCompetition) competition).getWinnersinTeams().toString();
+					list.addAll(((TeamCompetition) competition).getWinnersinTeams());
 					winnersInCompetition[i] = true;
 				}
+				break;
 			}
 			if (winnersInCompetition[i] == false) {
 				if (competition instanceof PersonalCompetition) {
-					getWinners = ((PersonalCompetition) competition).getWinners().toString();
+					list.addAll (((PersonalCompetition) competition).getWinners());
 
 				} else if (competition instanceof TeamCompetition) {
-					getWinners = ((TeamCompetition) competition).getTeamsWinners().toString();
+					list.addAll(((TeamCompetition) competition).getTeamsWinners());
 				}
 			}
 		}
-		return  getWinners;
+		ObservableList data = FXCollections.observableList(list);
+		return data;
 	}
+
 
 
 	public List<Competition> getCompetitions() {

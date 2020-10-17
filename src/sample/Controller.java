@@ -2,6 +2,8 @@ package sample;
 
 import Model.*;
 import Model.Date;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 
@@ -99,14 +101,24 @@ public class Controller {
         return spain2020.getCompetitions();
     }
 
-//    public  List<Athlete> getWinnersInPersonalCompetitions(Competition competition) {
-//
-//        return ((PersonalCompetition) competition).getWinners();
-//    }
-//    public  List<Team> getWinnersTeam(Competition competition) {
-//        return ((TeamCompetition)competition).getWinnersiTeams();
+    public List<Athlete> getAthleteInSprcificCompetition(PersonalCompetition competition) {
+        return competition.getPersonalCompetitionAthletes();
+    }
+    public List<Team> getTeamInSpecificCmpetition(TeamCompetition competition){
+        return competition.getCompetitionTeams();
+    }
+    public ObservableList getInitialTableData(Competition c) {
+        List list = new ArrayList();
+        if(c instanceof  PersonalCompetition){
+          list.addAll(getAthleteInSprcificCompetition((PersonalCompetition) c));
+        }
+        else{
+         list.addAll(getTeamInSpecificCmpetition((TeamCompetition) c));
+        }
 
-  //  }
+        ObservableList data = FXCollections.observableList(list);
+        return data;
+    }
 
 
     public String getFinalWinners(){

@@ -9,6 +9,14 @@ public class Runner extends Athlete implements  iRunner {
         this.highestSpeed = highestSpeed;
     }
 
+    public Runner(String name, int age, String gender , int highestSpeed,int numOfMedals,Country country) {
+        super(name,age,gender,country);
+        numOfMedals = getNumOfMedals();
+        this.highestSpeed = highestSpeed;
+    }
+
+
+
     public int getHighestSpeed() {
         return highestSpeed;
     }
@@ -26,4 +34,6 @@ public class Runner extends Athlete implements  iRunner {
     public String runnerInfo() {
         return  "highest speed: " + highestSpeed  ;
     }
+
+
 }

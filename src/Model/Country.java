@@ -19,6 +19,8 @@ public class Country {
 		this.countryTeams = new ArrayList<Team>();
 	}
 
+
+
 	public boolean addAthlete(Athlete newAthlete) throws Exception {
 		if (newAthlete instanceof Runner) {
 			allAthletes.add((Runner) newAthlete);
@@ -32,8 +34,7 @@ public class Country {
 		}
 		throw new Exception("You cant add this athlete");
 	}
-	
-	
+
 
 	public void addTeams(Team newTeams) throws Exception {
 		countryTeams.add(newTeams);
@@ -54,7 +55,6 @@ public class Country {
 		this.anthem = other.anthem;
 		this.numOfMedals = other.numOfMedals;
 	}
-
 	public String getCountryName() {
 		return countryName;
 	}
@@ -94,9 +94,10 @@ public class Country {
 	public String toString() {
 		final StringBuffer sb = new StringBuffer();
 		sb.append(countryName);
-		sb.append(", anthem='").append(anthem).append('\'');
-		sb.append("num of medals in this country : " + numOfMedals + "\n");
+	//	sb.append(", anthem='").append(anthem).append('\'');
+		//sb.append("num of medals in this country : " + numOfMedals + "\n");
 		return sb.toString();
 	}
+
 
 }
