@@ -20,7 +20,7 @@ public class RunnerReferee extends Referee {
 
     @Override
     public String toString() {
-        return "Runner Referee: " + super.toString() + "num of running contest refereed: " + numOfRunningContestsRefereed+ ']'+ "\n" ;
+        return  super.toString() + "num of running contest refereed: " + numOfRunningContestsRefereed+ "\n" ;
     }
 
 }

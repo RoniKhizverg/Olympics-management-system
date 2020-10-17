@@ -33,6 +33,6 @@ public class Stadium {
 
 	@Override
 	public String toString() {
-		return  "stadiumName : " + stadiumName  + ", address : " + address  + ", numOfSeats: " + numOfSeats +'.';
+		return  stadiumName  + ", address : " + address  + ", numOfSeats: " + numOfSeats +'.';
 	}
 }

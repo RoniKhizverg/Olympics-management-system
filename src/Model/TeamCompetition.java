@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 
-public class TeamCompetition extends Competition {
+public class TeamCompetition extends Competition implements iCompetition {
 	private List<Team> competitionTeams,teamWinners;
 
 	public TeamCompetition(Referee referee, Team.eSportTypes sportTypes, Date startDate, Stadium stadium) throws Exception {
@@ -84,4 +84,8 @@ public class TeamCompetition extends Competition {
 		return super.toString() +sb.toString() ;
 	}
 
+	@Override
+	public String getInfo() {
+		return super.toString();
+	}
 }

@@ -19,6 +19,6 @@ public class JumpingReferee extends Referee {
 
     @Override
     public String toString() {
-        return "Jumping Referee: "  + super.toString() + ']' + "\n" ;
+        return  super.toString()  + "\n" ;
     }
 }

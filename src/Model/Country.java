@@ -94,8 +94,8 @@ public class Country {
 	public String toString() {
 		final StringBuffer sb = new StringBuffer();
 		sb.append(countryName);
-	//	sb.append(", anthem='").append(anthem).append('\'');
-		//sb.append("num of medals in this country : " + numOfMedals + "\n");
+		sb.append(", anthem='").append(anthem).append('\'');
+		sb.append("num of medals in this country : " + numOfMedals + "\n");
 		return sb.toString();
 	}
 

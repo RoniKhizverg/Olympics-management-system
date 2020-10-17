@@ -16,7 +16,7 @@ public class Olympics {
 	private List<Referee> allReferees;
 	private Date endDate;
 	private Date startDate;
-	private boolean[]winnersInCompetition;
+	private boolean[] winnersInCompetition;
 
 	public Olympics(String olympicLocation, Date startDate, Date endDate) {
 		this.olympicLocation = olympicLocation;
@@ -162,9 +162,9 @@ public class Olympics {
 		return allAthletes;
 	}
 
-	public ObservableList getWinnersInSpecificCompetition(Competition competition){
+	public ObservableList getWinnersInSpecificCompetition(Competition competition) {
 		List list = new ArrayList();
-		for (int i=0; i < competitions.size();i++) {
+		for (int i = 0; i < competitions.size(); i++) {
 			if (competition.getStadium().equals(competitions.get(i).getStadium()) && winnersInCompetition[i] == false) {
 				if (competition instanceof PersonalCompetition) {
 					list.addAll(((PersonalCompetition) competition).getWinnersInCompetition());
@@ -177,7 +177,7 @@ public class Olympics {
 			}
 			if (winnersInCompetition[i] == false) {
 				if (competition instanceof PersonalCompetition) {
-					list.addAll (((PersonalCompetition) competition).getWinners());
+					list.addAll(((PersonalCompetition) competition).getWinners());
 
 				} else if (competition instanceof TeamCompetition) {
 					list.addAll(((TeamCompetition) competition).getTeamsWinners());
@@ -187,7 +187,6 @@ public class Olympics {
 		ObservableList data = FXCollections.observableList(list);
 		return data;
 	}
-
 
 
 	public List<Competition> getCompetitions() {
@@ -202,10 +201,10 @@ public class Olympics {
 		for (int i = 0; i < allCountries.size(); i++) {
 			int numOfMedalsInCountry = 0;
 			for (int j = 0; j < allCountries.get(i).getAllAthletes().size(); j++) {
-				numOfMedalsInCountry+= allCountries.get(i).getAllAthletes().get(j).getNumOfMedals();
+				numOfMedalsInCountry += allCountries.get(i).getAllAthletes().get(j).getNumOfMedals();
 			}
 			for (int k = 0; k < allCountries.get(i).getCountryTeams().size(); k++) {
-				numOfMedalsInCountry+= allCountries.get(i).getCountryTeams().get(k).getNumOfTeamsMedals();
+				numOfMedalsInCountry += allCountries.get(i).getCountryTeams().get(k).getNumOfTeamsMedals();
 			}
 			allCountries.get(i).setNumOfMedals(numOfMedalsInCountry);
 		}
@@ -320,23 +319,17 @@ public class Olympics {
 		this.endDate = endDate;
 	}
 
-	public String getWinnersInOlympicsByCountriesCompetitions() {
+	public void getWinnersInOlympicsByCountriesCompetitions() {
 		updateMdealsInCountry();
 		String countriesWinners = "";
 		sortCountriesByMedals(allCountries);
-		if (allCountries.size() >= 3) {
-			for (int i = 0; i < 3; i++) {
-				countriesWinners += allCountries.get(i) + "\n";
-			}
-		}
-		return countriesWinners;
-	}
 
-	@Override
-	public String toString() {
-		StringBuffer sb = new StringBuffer("Olympics" + "\n");
-		// getAllAthleteAndTeams();
-		// getInformationTeamsInRunningAndJumping();
+	}
+		//@Override
+		//public String toString () {
+		//	StringBuffer sb = new StringBuffer("Olympics" + "\n");
+			// getAllAthleteAndTeams();
+			// getInformationTeamsInRunningAndJumping();
 //		for (Competition competitions : competitions) {
 //			if(competitions instanceof TeamCompetition) {
 //				((TeamCompetition) competitions).;
@@ -345,18 +338,18 @@ public class Olympics {
 //				((PersonalCompetition) competitions).getWinners();
 //			}
 //		}
-		// }
-		// for (TeamCompetition teamCompetition : allTeamslCompetitions) {
-		// teamCompetition.getWinners();
-		// }
-		// getWinnersInOlympicsByPersonalCompetitions();
-		updateMdealsInCountry();
+			// }
+			// for (TeamCompetition teamCompetition : allTeamslCompetitions) {
+			// teamCompetition.getWinners();
+			// }
+			// getWinnersInOlympicsByPersonalCompetitions();
+		//	updateMdealsInCountry();
 
-		//sb.append(" The winners  in teams are:"+ getWinnersInOlympicsByTeamCompetitions());
+			//sb.append(" The winners  in teams are:"+ getWinnersInOlympicsByTeamCompetitions());
 
-		sb.append(" The winners in countries are: \n" + getWinnersInOlympicsByCountriesCompetitions());
-				sb.append("The winners in teams are \n" + getWinnersInOlympicsByTeamCompetitions());
-				sb.append("The winners athlete are \n " + getWinnersInOlympicsByPersonalCompetitions());
-		return sb.toString();
-	}
-}
+//		sb.append(" The winners in countries are: \n" + getWinnersInOlympicsByCountriesCompetitions());
+//				sb.append("The winners in teams are \n" + getWinnersInOlympicsByTeamCompetitions());
+//				sb.append("The winners athlete are \n " + getWinnersInOlympicsByPersonalCompetitions());
+//		return sb.toString();
+		}
+
