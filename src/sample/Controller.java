@@ -123,7 +123,7 @@ public class Controller {
 
     public String getFinalWinners(){
         StringBuffer sb = new StringBuffer();
-        sb.append(" The winners in countries are: \n" + spain2020.getWinnersInOlympicsByCountriesCompetitions());
+    //    sb.append(" The winners in countries are: \n" + spain2020.getWinnersInOlympicsByCountriesCompetitions());
         return sb.toString();
     }
 

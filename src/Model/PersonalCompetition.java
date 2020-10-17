@@ -4,7 +4,7 @@ package Model;
 import java.util.*;
 
 
-public class PersonalCompetition extends Competition {
+public class PersonalCompetition extends Competition implements iCompetition{
 	private List<Athlete> personalCompetitionAthletes,winners;
 
 	public PersonalCompetition(Referee referee, Team.eSportTypes sportTypes, Date startDate, Stadium stadium) throws Exception {
@@ -83,4 +83,8 @@ public String toString() {
 	return super.toString() +  sb.toString(); 
 }
 
+	@Override
+	public String getInfo() {
+		return super.toString();
+	}
 }

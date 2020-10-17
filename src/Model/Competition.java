@@ -1,7 +1,7 @@
 package Model;
 
 
-public abstract class Competition  {
+public abstract class Competition implements iCompetition {
 	private Stadium stadium;
 	private Referee referee;
 	private Team.eSportTypes sportTypes;
@@ -51,10 +51,11 @@ public abstract class Competition  {
 	}
 
 
+
 	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer("");
-		sb.append( "Stadium: " + stadium + " referee: " + getReferee() + " ,sportTypes: " + getSportTypes() + " ,startDate: " + getStartDate());
+		sb.append("Competition start Date: " + getStartDate() + "\n\nStadium: " + stadium + "\n Referee: " + getReferee() + " ,sportTypes: " + getSportTypes()  );
 		return sb.toString();
 	}
 
