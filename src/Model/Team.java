@@ -20,6 +20,12 @@ public class Team {
 		this.sportTypes = sportTypes;
 		stateTeam = new ArrayList<Athlete>();
 	}
+	public Team(String teamName, eSportTypes sportTypes,int numOfTeamsMedals) {
+		this.teamName = teamName;
+		this.sportTypes = sportTypes;
+		stateTeam = new ArrayList<Athlete>();
+		this.numOfTeamsMedals = numOfTeamsMedals;
+	}
 
 	public Exception addAthlete(Athlete newAthlete) throws Exception {
 		if ((sportTypes == eSportTypes.RUNNING)
