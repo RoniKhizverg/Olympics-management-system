@@ -199,7 +199,14 @@ public class OlympicView /*extends Application*/ {
         button13 = new Button("previous");
         button14 = new Button("Finish");
         button13.setOnAction(e -> getMainWindow().setScene(s2));
-        button14.setOnAction(e -> getMainWindow().close());
+        button14.setOnAction(e -> {
+            e.consume();
+            try {
+                CloseProgram();
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
 
 
         gp.add(l3, 35, 33);
