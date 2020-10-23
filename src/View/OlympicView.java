@@ -22,7 +22,7 @@ import java.util.List;
 public class OlympicView /*extends Application*/ {
 
     private Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, instructionButton, button12, button13, button14, button15, button16,button17;
-    private Scene s1, s2, s3, s4, s5, s6, s7, s8,insstructionScene;
+    private Scene s1, s2, s3, s4, s5, s6, s7, s8,instructionScene;
     private Stage MainWindow;
     private Label l2;
     private TableView table, table3;
@@ -31,37 +31,11 @@ public class OlympicView /*extends Application*/ {
     private int count=0;
 
 
-//    public Button getButton1() {
-//        return button1;
-//    }
-
     public Stage getMainWindow() {
         return MainWindow;
     }
 
-//    public Button getButton2() {
-//        return button2;
-//    }
-//
-//    public Button getButton3() {
-//        return button3;
-//    }
-//
-//    public Button getButton4() {
-//        return button4;
-//    }
-//
-//    public Button getButton5() {
-//        return button5;
-//    }
-//
-//    public Button getButton6() {
-//        return button6;
-//    }
-//
-//    public Scene getS3() {
-//        return s3;
-//    }
+
 
     public Label getL2() {
         return l2;
@@ -122,7 +96,7 @@ public class OlympicView /*extends Application*/ {
         stadiumView4.setFitWidth(100);
 
         primaryStage.setResizable(false);
-        VBox layoutInMainWindow = new VBox(280);
+        VBox layoutInMainWindow = new VBox(150);
         layoutInMainWindow.setAlignment(Pos.CENTER);
         layoutInMainWindow.setBackground(new Background(
                 Collections.singletonList(new BackgroundFill(
@@ -136,7 +110,7 @@ public class OlympicView /*extends Application*/ {
                         BackgroundPosition.DEFAULT,
                         BackgroundSize.DEFAULT))));
 
-        layoutInMainWindow.getChildren().addAll(l, button1,l2);
+        layoutInMainWindow.getChildren().addAll(l, button1,instructionButton,l2);
         layoutInMainWindow.setAlignment(Pos.CENTER);
         s1 = new Scene(layoutInMainWindow, 950, 760);
         primaryStage.setScene(s1);
@@ -196,16 +170,13 @@ public class OlympicView /*extends Application*/ {
                 "4) In order to see which country won, click on \"Olympic winners\"\n" +
                 "*In order to see the participants of each competition, enter the competition and click on \"Show participants\"");
                 button17 = new Button("Previous");
-                button17.setOnAction(e -> getMainWindow().setScene(s2));
+                button17.setOnAction(e -> getMainWindow().setScene(s1));
                 VBox instructionVbox = new VBox(20);
                 instructionVbox.getChildren().addAll(instructionLable,button17);
 
-            insstructionScene = new Scene(instructionVbox,950, 760);
-            getMainWindow().setScene(insstructionScene);
-
-
+            instructionScene = new Scene(instructionVbox,950, 760);
+            getMainWindow().setScene(instructionScene);
     }
-
 
     public void getWinners(Olympics olympics) {
         GridPane gp = new GridPane();
@@ -361,17 +332,16 @@ public class OlympicView /*extends Application*/ {
         olympicRing.setFitWidth(70);
         button9.setGraphic(olympicRing);
 
-        if(count!=0){
-            button9.setVisible(false);
-        }
         button7 = new Button("previous");
         button7.setFont(new Font("David", 15));
         button7.setAlignment(Pos.BOTTOM_RIGHT);
         button7.setOnAction(e -> getMainWindow().setScene(s2));
 
-        button9.setOnAction(e ->{if(count==0){
+        button9.setOnAction(e ->{if(count==0) {
+            checkIfButtonIspressedMoreThanOne();
+        }
             getWinnersInCompetition(competition, getMainWindow());
-        }});
+        });
         button8.setOnAction(e -> getTypeOfCompetition(competition, getMainWindow()));
         VBox vbox6 = new VBox(150);
         vbox6.setAlignment(Pos.TOP_CENTER);
@@ -400,6 +370,7 @@ public class OlympicView /*extends Application*/ {
     private void checkIfButtonIspressedMoreThanOne() {
         if (count == 0) {
             count++;
+            button9.setVisible(false);
         }
     }
 
@@ -434,7 +405,6 @@ public class OlympicView /*extends Application*/ {
         GridPane gp3 = new GridPane();
         gp3.setHgap(6);
         gp3.setVgap(6);
-        competition.getWinnersinTeams();
         Label l9 = new Label();
         l9.setText(((TeamCompetition) competition).getTeamsWinners().get(0).getTeamName());
         l9.setTextFill(Color.BLACK);
@@ -477,7 +447,6 @@ public class OlympicView /*extends Application*/ {
         GridPane gp2 = new GridPane();
         gp2.setHgap(6);
         gp2.setVgap(6);
-        competition.getWinnersInCompetition();
         Label l6 = new Label();
         l6.setText(((PersonalCompetition) competition).getWinners().get(0).getName() + "\n" + (((PersonalCompetition) competition).getWinners().get(0).getFromCountry()));
         l6.setTextFill(Color.BLACK);

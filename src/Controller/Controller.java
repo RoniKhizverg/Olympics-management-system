@@ -76,12 +76,14 @@ public class Controller {
                                 .addTeamsToCompetition(spain2020.getAllTeams().get(j));
                     }
                 }
-
-            } else if (spain2020.getCompetitions().get(a) instanceof PersonalCompetition) {
+                ((TeamCompetition)  competitions.get(a)).getWinnersinTeams();
+            }
+            else if (spain2020.getCompetitions().get(a) instanceof PersonalCompetition) {
                 for (int j = 0; j < spain2020.getAllAthletes().size(); j++) {
                     if (spain2020.getCompetitions().get(a).getSportTypes() == Team.eSportTypes.RUNNING) {
                         ((PersonalCompetition) spain2020.getCompetitions().get(a))
                                 .addAthleteToPersonalCompetition(spain2020.getAllAthletes().get(j));
+
 
                     } else {
                         ((PersonalCompetition) spain2020.getCompetitions().get(a))
@@ -89,10 +91,11 @@ public class Controller {
 
                     }
                 }
+                ((PersonalCompetition)  competitions.get(a)).getWinnersInCompetition();
             }
 
+
         }
-       // olympicView.getButton2().setEv
     }
 }
 
