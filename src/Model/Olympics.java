@@ -56,20 +56,22 @@ public class Olympics {
 				int age = sFile.nextInt();
 				String gender = sFile.next();
 				String typeSport = sFile.next();
+				String fromCountry = sFile.next();
+				fromCountry+=sFile.nextLine();
 				if (typeSport.equalsIgnoreCase("running")) {
 					int highestSpeed = sFile.nextInt();
-					Athlete newAthlete = new Runner(athleteName, age, gender, highestSpeed);
+					Athlete newAthlete = new Runner(athleteName, age, gender, highestSpeed,fromCountry);
 					allCountries.get(numOfCountries).addAthlete(newAthlete);
 					allAthletes.add(newAthlete);
 				} else if (typeSport.equalsIgnoreCase("jumping")) {
 					int highestJumping = sFile.nextInt();
-					Athlete newAthlete = new Jumper(athleteName, age, gender, highestJumping);
+					Athlete newAthlete = new Jumper(athleteName, age, gender, highestJumping,fromCountry);
 					allCountries.get(numOfCountries).addAthlete(newAthlete);
 					allAthletes.add(newAthlete);
 				} else {
 					int highestSpeed = sFile.nextInt();
 					int highestJumping = sFile.nextInt();
-					Athlete newAthlete = new RunnerAndJumper(athleteName, age, gender, highestSpeed, highestJumping);
+					Athlete newAthlete = new RunnerAndJumper(athleteName, age, gender, highestSpeed, highestJumping,fromCountry);
 					allAthletes.add(newAthlete);
 					allCountries.get(numOfCountries).addAthlete(newAthlete);
 
@@ -98,21 +100,23 @@ public class Olympics {
 					int age = sFile.nextInt();
 					String gender = sFile.next();
 					String typeSport = sFile.next();
+					String fromCountry = sFile.next();
+					fromCountry+=sFile.nextLine();
 					if (typeSport.equalsIgnoreCase("running")) {
 						int highestSpeed = sFile.nextInt();
-						Athlete newAthlete = new Runner(athleteName, age, gender, highestSpeed);
+						Athlete newAthlete = new Runner(athleteName, age, gender, highestSpeed,fromCountry);
 						allTeams.get(numOfTeams).addAthlete(newAthlete);
 						allCountries.get(numOfCountries).addAthlete(newAthlete);
 					} else if (typeSport.equalsIgnoreCase("jumping")) {
 						int highestJumping = sFile.nextInt();
-						Athlete newAthlete = new Jumper(athleteName, age, gender, highestJumping);
+						Athlete newAthlete = new Jumper(athleteName, age, gender, highestJumping,fromCountry);
 						allCountries.get(numOfCountries).addAthlete(newAthlete);
 						allTeams.get(numOfTeams).addAthlete(newAthlete);
 					} else {
 						int highestSpeed = sFile.nextInt();
 						int highestJumping = sFile.nextInt();
 						Athlete newAthlete = new RunnerAndJumper(athleteName, age, gender, highestSpeed,
-								highestJumping);
+								highestJumping,fromCountry);
 						allCountries.get(numOfCountries).addAthlete(newAthlete);
 						allTeams.get(numOfTeams).addAthlete(newAthlete);
 
@@ -135,15 +139,17 @@ public class Olympics {
 					String refereeGender = sFile.next();
 					int numOfExperience = sFile.nextInt();
 					String SportType = sFile.next();
+					String fromCountry = sFile.next();
+					fromCountry+=sFile.nextLine();
 					if (SportType.equalsIgnoreCase("running")) {
 						int numOfRunningContestsRefereed = sFile.nextInt();
 						Referee newReferee = new RunnerReferee(refereeName, refereeAge, refereeGender, numOfExperience,
-								numOfRunningContestsRefereed);
+								numOfRunningContestsRefereed,fromCountry);
 						allReferees.add(newReferee);
 					} else if (SportType.equalsIgnoreCase("jumping")) {
 						int numOfJumpingContestsRefereed = sFile.nextInt();
 						Referee newReferee = new JumpingReferee(refereeName, refereeAge, refereeGender, numOfExperience,
-								numOfJumpingContestsRefereed);
+								numOfJumpingContestsRefereed,fromCountry);
 						allReferees.add(newReferee);
 					}
 

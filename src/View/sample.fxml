@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.SubScene?>
-<VBox spacing="100" fx:controller="sample.Controller"
+<VBox spacing="100" fx:controller="Controller.Controller"
       xmlns:fx="http://javafx.com/fxml" alignment="center" prefHeight="300" prefWidth="300" >
 
 <fx:define >
