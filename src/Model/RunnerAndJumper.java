@@ -5,16 +5,16 @@ public class RunnerAndJumper extends Athlete implements iRunner, iJumper {
     private Runner r;
     private Jumper j;
 
-    public RunnerAndJumper(String name, int age, String gender, int highestSpeed, int highestJumping) {
-        super(name, age, gender);
-        r = new Runner(name, age, gender, highestSpeed);
-        j = new Jumper(name, age, gender, highestJumping);
+    public RunnerAndJumper(String name, int age, String gender, int highestSpeed, int highestJumping,String fromCountry) {
+        super(name, age, gender,fromCountry);
+        r = new Runner(name, age, gender, highestSpeed,fromCountry);
+        j = new Jumper(name, age, gender, highestJumping,fromCountry);
     }
 
-    public RunnerAndJumper(String name, int age, String gender, int highestSpeed, int highestJumping,int numOfMedals) {
-        super(name, age, gender);
-        r = new Runner(name, age, gender, highestSpeed);
-        j = new Jumper(name, age, gender, highestJumping);
+    public RunnerAndJumper(String name, int age, String gender, int highestSpeed, int highestJumping,int numOfMedals,String fromCountry) {
+        super(name, age, gender,fromCountry);
+        r = new Runner(name, age, gender, highestSpeed,fromCountry);
+        j = new Jumper(name, age, gender, highestJumping,fromCountry);
         numOfMedals = getNumOfMedals();
     }
 

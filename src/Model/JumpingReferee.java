@@ -4,8 +4,8 @@ package Model;
 public class JumpingReferee extends Referee {
     private int numOfJumpingContestsRefereed;
 
-    public JumpingReferee(String name, int age, String gender, int judgmentExperience, int numOfJumpingContestsRefereed) {
-        super(name, age, gender, judgmentExperience);
+    public JumpingReferee(String name, int age, String gender, int judgmentExperience, int numOfJumpingContestsRefereed,String fromCountry) {
+        super(name, age, gender, judgmentExperience,fromCountry);
         this.numOfJumpingContestsRefereed = numOfJumpingContestsRefereed;
     }
 

@@ -4,13 +4,13 @@ package Model;
 public  class Jumper extends Athlete implements iJumper {
     private int highestJumping;
 
-    public Jumper(String name, int age, String gender, int highestJumping) {
-        super(name, age, gender);
+    public Jumper(String name, int age, String gender, int highestJumping,String fromCountry) {
+        super(name, age, gender,fromCountry);
         this.highestJumping = highestJumping;
     }
 
-    public Jumper(String name, int age, String gender, int highestJumping,int numOfMedals) {
-        super(name, age, gender);
+    public Jumper(String name, int age, String gender, int highestJumping,int numOfMedals,String fromCountry) {
+        super(name, age, gender,fromCountry);
         this.highestJumping = highestJumping;
         numOfMedals = getNumOfMedals();
     }

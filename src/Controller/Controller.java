@@ -1,28 +1,24 @@
-package sample;
+package Controller;
 
 import Model.*;
 import Model.Date;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
+import View.OlympicView;
 
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.*;
 
 
 public class Controller {
-    public Olympics spain2020 = new Olympics("Spain", new Date(1, 12, 2020), new Date(16, 12, 2020));
+    private Olympics spain2020;
+    private OlympicView olympicView;
 
-    @FXML
-    public void getInfroInOlympics() throws Exception {
 
-        File alldata = new File("data.txt");
-        Scanner sFile2 = new Scanner(alldata);
-        spain2020.informationDataFromFile(sFile2);
+    public Controller(Olympics spain2020, OlympicView olympicView) throws Exception {
+        this.spain2020 = spain2020;
+        this.olympicView = olympicView;
 
+        olympicView.getL2().setText("Start Date: " + spain2020.getStartDate() + "\nEnd date: " + spain2020.getEndDate());
         List<Competition> competitions = new ArrayList<Competition>();
         int randomReferee;
         boolean isFound = false;
@@ -80,10 +76,10 @@ public class Controller {
                                 .addTeamsToCompetition(spain2020.getAllTeams().get(j));
                     }
                 }
+
             } else if (spain2020.getCompetitions().get(a) instanceof PersonalCompetition) {
                 for (int j = 0; j < spain2020.getAllAthletes().size(); j++) {
-                    if (spain2020.getCompetitions().get(a).
-                            getSportTypes() == Team.eSportTypes.RUNNING) {
+                    if (spain2020.getCompetitions().get(a).getSportTypes() == Team.eSportTypes.RUNNING) {
                         ((PersonalCompetition) spain2020.getCompetitions().get(a))
                                 .addAthleteToPersonalCompetition(spain2020.getAllAthletes().get(j));
 
@@ -94,44 +90,10 @@ public class Controller {
                     }
                 }
             }
+
         }
+       // olympicView.getButton2().setEv
     }
-
-    public List<Competition> getCompetitions() {
-        return spain2020.getCompetitions();
-    }
-
-    public List<Athlete> getAthleteInSprcificCompetition(PersonalCompetition competition) {
-        return competition.getPersonalCompetitionAthletes();
-    }
-    public List<Team> getTeamInSpecificCmpetition(TeamCompetition competition){
-        return competition.getCompetitionTeams();
-    }
-    public ObservableList getInitialTableData(Competition c) {
-        List list = new ArrayList();
-        if(c instanceof  PersonalCompetition){
-          list.addAll(getAthleteInSprcificCompetition((PersonalCompetition) c));
-        }
-        else{
-         list.addAll(getTeamInSpecificCmpetition((TeamCompetition) c));
-        }
-
-        ObservableList data = FXCollections.observableList(list);
-        return data;
-    }
-
-
-    public String getFinalWinners(){
-        StringBuffer sb = new StringBuffer();
-    //    sb.append(" The winners in countries are: \n" + spain2020.getWinnersInOlympicsByCountriesCompetitions());
-        return sb.toString();
-    }
-
-
 }
-
-
-
-
 
 

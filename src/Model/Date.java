@@ -55,11 +55,6 @@ public class Date {
 
 
 
-    public String toString() {
-            String sb = new String();
-            sb = day + "/" + month + "/" + year;
-            return sb;
-        }
 
         public int daysCount(Date d) {
             LocalDate enter = LocalDate.of(year, month, day);
@@ -90,6 +85,10 @@ public class Date {
             return year;
         }
 
-
+    public String toString() {
+        String sb = new String();
+        sb = day + "/" + month + "/" + year;
+        return sb;
+    }
     }
 
