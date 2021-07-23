@@ -4,9 +4,9 @@ package Model;
 public abstract class Referee extends Person {
     private int JudgmentExperience;
 
-    public Referee(String name, int age, String gender, int judgmentExperience,String fromCountry) {
-        super(name, age, gender,fromCountry);
-        this.JudgmentExperience=judgmentExperience;
+    public Referee(String name, int age, String gender, int judgmentExperience, String fromCountry) {
+        super(name, age, gender, fromCountry);
+        this.JudgmentExperience = judgmentExperience;
     }
 
 
@@ -22,6 +22,6 @@ public abstract class Referee extends Person {
 
     @Override
     public String toString() {
-     return  super.toString() + " Jurisdiction: " + ", Judgment Experience: " + JudgmentExperience + " years" + " ,country "+ getFromCountry() ;
+        return super.toString() + " Jurisdiction: " + ", Judgment Experience: " + JudgmentExperience + " years" + " ,country " + getFromCountry();
     }
 }

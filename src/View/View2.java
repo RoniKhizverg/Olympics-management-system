@@ -3,6 +3,8 @@ package View;
 import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,74 +16,71 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import javafx.stage.Stage;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class OlympicView /*extends Application*/ {
-
-    private Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, instructionButton, button12, button13, button14, button15, button16,button17;
-    private Scene s1, s2, s3, s4, s5, s6, s7, s8,insstructionScene;
+public class View2  {
+    private Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, instructionButton, button12, button13, button14, button15, button16, button17;
+    private Scene s1, s2, s3, s4, s5, s6, s7, s8, insstructionScene;
     private Stage MainWindow;
     private Label l2;
     private TableView table, table3;
     private ObservableList data, data3;
     private Text actionStatus;
-    private int count=0;
+    private int count = 0;
 
 
-//    public Button getButton1() {
-//        return button1;
-//    }
-
-    public Stage getMainWindow() {
-        return MainWindow;
-    }
-
-//    public Button getButton2() {
-//        return button2;
-//    }
-//
-//    public Button getButton3() {
-//        return button3;
-//    }
-//
-//    public Button getButton4() {
-//        return button4;
-//    }
-//
-//    public Button getButton5() {
-//        return button5;
-//    }
-//
-//    public Button getButton6() {
-//        return button6;
-//    }
-//
-//    public Scene getS3() {
-//        return s3;
-//    }
-
-    public Label getL2() {
-        return l2;
-    }
-
-    public void setL2(Label l2) {
-        this.l2 = l2;
-    }
-
-    public OlympicView(Stage primaryStage,Olympics olympics) throws Exception {
+    public View2(Stage primaryStage, ManagementSystem model) throws Exception {
         instructionButton = new Button("Instruction");
         instructionButton.setOnAction(e -> getInstruction());
         MainWindow = primaryStage;
         l2 = new Label();
         l2.setFont(new Font(15));
+        l2.setText("Start Date: " + model.getFileOlympic().getStartDate() + "\nEnd date:" + model.getFileOlympic().getEndDate());
         primaryStage.setTitle("Spain2020");
+        button7 = new Button("Previous");
+        button2 = new Button("Jumping team competition");
+        button3 = new Button("Running team competition ");
+        button4 = new Button("Running competition");
+        button5 = new Button("Jumping competition");
+        button6 = new Button("final Olympic winners");
         button1 = new Button("Start  the Olympic!");
         button1.setFont(new Font("David", 30));
         Label l = new Label(" Welcome to Olympic 2020 ");
         l.setFont(new Font(55));
+
+        VBox layoutInMainWindow = new VBox(180);
+        layoutInMainWindow.setAlignment(Pos.CENTER);
+        layoutInMainWindow.setBackground(new Background(
+                Collections.singletonList(new BackgroundFill(
+                        Color.WHITE,
+                        new CornerRadii(500),
+                        new Insets(10))),
+                Collections.singletonList(new BackgroundImage(
+                        new Image(getClass().getResourceAsStream("olympicBackGround.png"), 950, 600, false, true),
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundRepeat.NO_REPEAT,
+                        BackgroundPosition.DEFAULT,
+                        BackgroundSize.DEFAULT))));
+
+        layoutInMainWindow.getChildren().addAll(l, button1, instructionButton, l2);
+        layoutInMainWindow.setAlignment(Pos.CENTER);
+        s1 = new Scene(layoutInMainWindow, 950, 760);
+        primaryStage.setScene(s1);
+        primaryStage.setOnCloseRequest(e -> {
+            e.consume();
+            try {
+                CloseProgram();
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
+    public void showAllCompetitons() {
         Image stadiumImage1 = new Image(getClass().getResourceAsStream("stadium.png"));
         ImageView stadiumView1 = new ImageView(stadiumImage1);
         Image stadiumImage2 = new Image(getClass().getResourceAsStream("stadium2.png"));
@@ -96,12 +95,7 @@ public class OlympicView /*extends Application*/ {
         cupView.setFitWidth(140);
         cupView.setFitHeight(100);
 
-        button7 = new Button("Previous");
-        button2 = new Button("Jumping team competition");
-        button3 = new Button("Running team competition ");
-        button4 = new Button("Running competition");
-        button5 = new Button("Jumping competition");
-        button6 = new Button("Olympic winners");
+
         button6.setFont(new Font(20));
         button6.setGraphic(cupView);
         button6.setTextFill(Color.BLACK);
@@ -109,7 +103,6 @@ public class OlympicView /*extends Application*/ {
         button3.setFont(new Font(15));
         button4.setFont(new Font(15));
         button5.setFont(new Font(15));
-
 
 
         stadiumView1.setFitHeight(100);
@@ -121,35 +114,6 @@ public class OlympicView /*extends Application*/ {
         stadiumView4.setFitHeight(100);
         stadiumView4.setFitWidth(100);
 
-        primaryStage.setResizable(false);
-        VBox layoutInMainWindow = new VBox(280);
-        layoutInMainWindow.setAlignment(Pos.CENTER);
-        layoutInMainWindow.setBackground(new Background(
-                Collections.singletonList(new BackgroundFill(
-                        Color.WHITE,
-                        new CornerRadii(500),
-                        new Insets(10))),
-                Collections.singletonList(new BackgroundImage(
-                        new Image(getClass().getResourceAsStream("olympicBackGround.png"), 950, 600, false, true),
-                        BackgroundRepeat.NO_REPEAT,
-                        BackgroundRepeat.NO_REPEAT,
-                        BackgroundPosition.DEFAULT,
-                        BackgroundSize.DEFAULT))));
-
-        layoutInMainWindow.getChildren().addAll(l, button1,l2);
-        layoutInMainWindow.setAlignment(Pos.CENTER);
-        s1 = new Scene(layoutInMainWindow, 950, 760);
-        primaryStage.setScene(s1);
-        primaryStage.setOnCloseRequest(e -> {
-            e.consume();
-            try {
-                CloseProgram();
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-        });
-
-
         button2.setGraphic(stadiumView1);
         button3.setGraphic(stadiumView2);
         button4.setGraphic(stadiumView3);
@@ -159,12 +123,6 @@ public class OlympicView /*extends Application*/ {
         VBox layout2 = new VBox(20);
         layout2.setAlignment(Pos.CENTER);
 
-        button2.setOnAction(e -> Display_new_window(olympics.getCompetitions().get(0) ));
-        button3.setOnAction(e -> Display_new_window(olympics.getCompetitions().get(1)));
-        button4.setOnAction(e -> Display_new_window(olympics.getCompetitions().get(2)));
-        button5.setOnAction(e -> Display_new_window(olympics.getCompetitions().get(3)));
-          button6.setOnAction(e -> getWinners(olympics));
-          button1.setOnAction(e -> primaryStage.setScene(s2));
 
         layout2.setBackground(new Background(
                 Collections.singletonList(new BackgroundFill(
@@ -182,10 +140,9 @@ public class OlympicView /*extends Application*/ {
         layout2.getChildren().addAll(button2, button3, button4, button5, button6, stadiumView1, stadiumView2, stadiumView3, stadiumView4);
 
         s2 = new Scene(layout2, 950, 760);
-
-
-        primaryStage.show();
+        getMainWindow().setScene(s2);
     }
+
 
     public void getInstruction() {
 
@@ -194,34 +151,37 @@ public class OlympicView /*extends Application*/ {
                 "2) Enter the competition and click on \"Start competition\"\n" +
                 "3) Repeat for all competitions\n" +
                 "4) In order to see which country won, click on \"Olympic winners\"\n" +
-                "*In order to see the participants of each competition, enter the competition and click on \"Show participants\"");
-                button17 = new Button("Previous");
-                button17.setOnAction(e -> getMainWindow().setScene(s2));
-                VBox instructionVbox = new VBox(20);
-                instructionVbox.getChildren().addAll(instructionLable,button17);
+                "*In order to see the participants of each competition, enter the competition and click on \"Show participants\"" +
+                "An athlete is a runner if he has the feature of high speeding +\n" +
+                "An athlete is of the jumping type if he has a high jumping feature +\n" +
+                "An athlete who has a feature of both and both is both a runner and a jumper\");\n");
+        button17 = new Button("Previous");
+        button17.setOnAction(e -> getMainWindow().setScene(s1));
+        VBox instructionVbox = new VBox(20);
+        instructionVbox.getChildren().addAll(instructionLable, button17);
 
-            insstructionScene = new Scene(instructionVbox,950, 760);
-            getMainWindow().setScene(insstructionScene);
+        insstructionScene = new Scene(instructionVbox, 950, 760);
+        getMainWindow().setScene(insstructionScene);
 
 
     }
 
 
-    public void getWinners(Olympics olympics) {
+    public void getWinners(ManagementSystem model) {
         GridPane gp = new GridPane();
         gp.setHgap(6);
         gp.setVgap(6);
-        olympics.getWinnersInOlympicsByCountriesCompetitions();
+        model.getFileOlympic().getWinnersInOlympicsByCountriesCompetitions();
         Label l3 = new Label();
-        l3.setText(olympics.getCountries().get(0).getCountryName() + "\nNum of medals: " + olympics.getCountries().get(0).getNumOfMedals());
+        l3.setText(model.getFileOlympic().getCountries().get(0).getCountryName() + "\nNum of medals: " + model.getFileOlympic().getCountries().get(0).getNumOfMedals());
         l3.setTextFill(Color.BLACK);
         l3.setFont(new Font(20));
         Label l4 = new Label();
-        l4.setText(olympics.getCountries().get(1).getCountryName() + "\nNum of medals: " + olympics.getCountries().get(1).getNumOfMedals());
+        l4.setText(model.getFileOlympic().getCountries().get(1).getCountryName() + "\nNum of medals: " + model.getFileOlympic().getCountries().get(1).getNumOfMedals());
         l4.setTextFill(Color.BLACK);
         l4.setFont(new Font(20));
         Label l5 = new Label();
-        l5.setText(olympics.getCountries().get(2).getCountryName() + "\nNum of medals: " + olympics.getCountries().get(2).getNumOfMedals());
+        l5.setText(model.getFileOlympic().getCountries().get(2).getCountryName() + "\nNum of medals: " + model.getFileOlympic().getCountries().get(2).getNumOfMedals());
         l5.setTextFill(Color.BLACK);
         l5.setFont(new Font(20));
 
@@ -249,17 +209,14 @@ public class OlympicView /*extends Application*/ {
                                 BackgroundPosition.DEFAULT,
                                 BackgroundSize.DEFAULT))));
 
-//        String s = "Queen_We_Are_The_Champions_Ringtone";
-//        Media media = new Media(Paths.get(s).toUri().toString());
-//        MediaPlayer mp = new MediaPlayer(media);
-//        mp.play();
+
         s6 = new Scene(gp, 950, 760);
         getMainWindow().setScene(s6);
 
     }
 
-    public void Display_new_window(Competition competition) {
-        count=0;
+    public void DisplayPersonalCompetition(Competition competition) {
+        count = 0;
         Label label = new Label("Participants");
         label.setTextFill(Color.DARKBLUE);
         label.setFont(Font.font("Calibri", FontWeight.BOLD, 36));
@@ -307,7 +264,10 @@ public class OlympicView /*extends Application*/ {
 
         // Scene
         s7 = new Scene(vbox2, 950, 760); // w x h
+        getMainWindow().setScene(s7);
+    }
 
+    public void displayTeamCompetition(Competition competition) {
 
         Label label3 = new Label("Team Participants");
         label3.setTextFill(Color.DARKBLUE);
@@ -346,7 +306,10 @@ public class OlympicView /*extends Application*/ {
 
         // Scene
         s4 = new Scene(vbox4, 950, 760); // w x h
+        getMainWindow().setScene(s4);
+    }
 
+    public void getDetailsInCompetition(Competition competition) {
         Label label10 = new Label(competition.getInfo());
         label10.setFont(new Font(20));
         button8 = new Button("Show participants ");
@@ -361,7 +324,7 @@ public class OlympicView /*extends Application*/ {
         olympicRing.setFitWidth(70);
         button9.setGraphic(olympicRing);
 
-        if(count!=0){
+        if (count != 0) {
             button9.setVisible(false);
         }
         button7 = new Button("previous");
@@ -369,13 +332,15 @@ public class OlympicView /*extends Application*/ {
         button7.setAlignment(Pos.BOTTOM_RIGHT);
         button7.setOnAction(e -> getMainWindow().setScene(s2));
 
-        button9.setOnAction(e ->{if(count==0){
-            getWinnersInCompetition(competition, getMainWindow());
-        }});
-        button8.setOnAction(e -> getTypeOfCompetition(competition, getMainWindow()));
+        button9.setOnAction(e -> {
+            if (count == 0) {
+                getWinnersInCompetition(competition, getMainWindow());
+            }
+        });
+        button8.setOnAction(e -> getTypeOfCompetition(competition));
         VBox vbox6 = new VBox(150);
         vbox6.setAlignment(Pos.TOP_CENTER);
-        vbox6.getChildren().addAll(label10,button8, button9, button7);
+        vbox6.getChildren().addAll(label10, button8, button9, button7);
 
         vbox6.setBackground(
                 new Background(
@@ -394,14 +359,8 @@ public class OlympicView /*extends Application*/ {
 
         getMainWindow().setScene(s3);
         getMainWindow().show();
-
     }
 
-    private void checkIfButtonIspressedMoreThanOne() {
-        if (count == 0) {
-            count++;
-        }
-    }
 
     public ObservableList getInitialTableData(Competition competition) {
         List list = new ArrayList();
@@ -414,16 +373,18 @@ public class OlympicView /*extends Application*/ {
         ObservableList data = FXCollections.observableList(list);
         return data;
     }
-    public List<Athlete> getAthleteInSprcificCompetition (PersonalCompetition competition){
+
+    public List<Athlete> getAthleteInSprcificCompetition(PersonalCompetition competition) {
         return competition.getPersonalCompetitionAthletes();
     }
 
-    public List<Team> getTeamInSpecificCmpetition (TeamCompetition competition){
+    public List<Team> getTeamInSpecificCmpetition(TeamCompetition competition) {
         return competition.getCompetitionTeams();
     }
 
     private void getWinnersInCompetition(Competition competition, Stage primaryStage) {
         if (competition instanceof PersonalCompetition)
+
             getWinnersInPersonalCompetition((PersonalCompetition) competition, primaryStage);
         else {
             getWinnersInTeamCompetition((TeamCompetition) competition, primaryStage);
@@ -434,7 +395,9 @@ public class OlympicView /*extends Application*/ {
         GridPane gp3 = new GridPane();
         gp3.setHgap(6);
         gp3.setVgap(6);
-        competition.getWinnersinTeams();
+        if (competition.getTeamsWinners().size() == 0) {
+            competition.getWinnersInTeams();
+        }
         Label l9 = new Label();
         l9.setText(((TeamCompetition) competition).getTeamsWinners().get(0).getTeamName());
         l9.setTextFill(Color.BLACK);
@@ -477,7 +440,9 @@ public class OlympicView /*extends Application*/ {
         GridPane gp2 = new GridPane();
         gp2.setHgap(6);
         gp2.setVgap(6);
-        competition.getWinnersInCompetition();
+        if (competition.getWinners().size() == 0) {
+            competition.getWinnersInCompetition();
+        }
         Label l6 = new Label();
         l6.setText(((PersonalCompetition) competition).getWinners().get(0).getName() + "\n" + (((PersonalCompetition) competition).getWinners().get(0).getFromCountry()));
         l6.setTextFill(Color.BLACK);
@@ -518,14 +483,18 @@ public class OlympicView /*extends Application*/ {
 
     }
 
-    private void getTypeOfCompetition(Competition competition, Stage primaryStage) {
+    public void getTypeOfCompetition(Competition competition) {
         if (competition instanceof PersonalCompetition)
-            primaryStage.setScene(s7);
+            DisplayPersonalCompetition(competition);
         else {
-            primaryStage.setScene(s4);
+            displayTeamCompetition(competition);
         }
 
 
+    }
+
+    public Stage getMainWindow() {
+        return MainWindow;
     }
 
 
@@ -541,4 +510,29 @@ public class OlympicView /*extends Application*/ {
         }
     }
 
+
+    public void addEventToEnterTheOlympic(EventHandler<ActionEvent> EnterTheOlympic) {
+        button1.setOnAction(EnterTheOlympic);
+    }
+
+    public void addEventToEnterToCompetitionNum3(EventHandler<ActionEvent> EnterToJumpingTeamCompetition) {
+        button4.setOnAction(EnterToJumpingTeamCompetition);
+    }
+
+
+    public void addEventToEnterToCompetitionNum1(EventHandler<ActionEvent> EnterToCompetitionNum1) {
+        button2.setOnAction(EnterToCompetitionNum1);
+    }
+
+    public void addEventToEnterToCompetitionNum2(EventHandler<ActionEvent> EnterToCompetitionNum2) {
+        button3.setOnAction(EnterToCompetitionNum2);
+    }
+
+    public void addEventToGetFinalWinner(EventHandler<ActionEvent> FinalWinner) {
+        button6.setOnAction(FinalWinner);
+    }
+
+    public void addEventToEnterToCompetitionNum4(EventHandler<ActionEvent> enterCompetition4) {
+        button5.setOnAction(enterCompetition4);
+    }
 }

@@ -13,7 +13,7 @@ public class Date {
                 30, 31, 30, 31 };
 
         public Date(int day, int month, int year) {
-            if (year >= 2000 && year <= 2020) {
+            if (year >= 1950 && year <= 2020) {
                 this.year = year;
                 nameDayOfTheWeek = "" + year;
             } else {

@@ -20,7 +20,6 @@ public class Country {
 	}
 
 
-
 	public boolean addAthlete(Athlete newAthlete) throws Exception {
 		if (newAthlete instanceof Runner) {
 			allAthletes.add((Runner) newAthlete);

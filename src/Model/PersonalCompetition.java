@@ -17,18 +17,25 @@ public class PersonalCompetition extends Competition implements iCompetition{
 		return personalCompetitionAthletes;
 	}
 
-	public Exception addAthleteToPersonalCompetition(Athlete newAthlete) {
+	public boolean addAthleteToPersonalCompetition(Athlete newAthlete) throws Exception {
+		for(int i=0; i<personalCompetitionAthletes.size();i++){
+			if(personalCompetitionAthletes.get(i).equals(newAthlete)){
+				throw new Exception("The athlete is already exist");
+			}
+		}
 		if (getSportTypes() == Team.eSportTypes.RUNNING){
 			if((newAthlete instanceof Runner) || (newAthlete instanceof RunnerAndJumper)) {
 				personalCompetitionAthletes.add(newAthlete);
+				return true;
 			}
 		}
 		 else if (getSportTypes() == Team.eSportTypes.JUMPING) {
 				if((newAthlete instanceof Jumper) || (newAthlete instanceof RunnerAndJumper)) {
 			personalCompetitionAthletes.add(newAthlete);
+			return true;
 				}
 		}
-		return new Exception("You cant add this type of athlete to this team");
+		 throw new Exception("You cant add this type of athlete");
 }
 
 public List<Athlete> getWinnersInCompetition() {
@@ -75,12 +82,12 @@ public void sortByNumOfmedals() {
 
 @Override
 public String toString() {
-	StringBuffer sb = new StringBuffer("Personal Competition  ");
+	StringBuffer sb = new StringBuffer(" Personal Competition  ");
 	sb.append("Num of participatants: " + personalCompetitionAthletes.size() + "\n");
 	for (int i = 0; i < personalCompetitionAthletes.size(); i++) {
 		sb.append(personalCompetitionAthletes.get(i) + "\n");
 	}
-	return super.toString() +  sb.toString(); 
+	return  sb.toString() + super.toString();
 }
 
 	@Override

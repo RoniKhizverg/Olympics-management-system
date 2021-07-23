@@ -1,99 +1,181 @@
 package Controller;
 
 import Model.*;
-import Model.Date;
-import View.OlympicView;
-
-
-import java.util.ArrayList;
-import java.util.*;
+import View.View1;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 
 
 public class Controller {
     private Olympics spain2020;
-    private OlympicView olympicView;
+    private View1 olympicView;
 
 
-    public Controller(Olympics spain2020, OlympicView olympicView) throws Exception {
-        this.spain2020 = spain2020;
-        this.olympicView = olympicView;
-
-        olympicView.getL2().setText("Start Date: " + spain2020.getStartDate() + "\nEnd date: " + spain2020.getEndDate());
-        List<Competition> competitions = new ArrayList<Competition>();
-        int randomReferee;
-        boolean isFound = false;
-        Stadium CampNou = new Stadium("Camp Nou", "Barcelona", 99354);
-        Stadium EstadioSantiagoBernabeu = new Stadium("Estadio Santiago Bernabeu", "Madrid", 85454);
-        Stadium EstadioMetropolitano = new Stadium("Estadio Metropolitano", "Madrid", 68456);
-        Stadium EstadioBenitoVillamarin = new Stadium("Estadio Benito Villamarin", "Madrid", 60724);
-
-
-        do {
-            randomReferee = (int) (Math.random() * spain2020.getAllReferees().size()); // a random way
-            if (spain2020.getAllReferees().get(randomReferee) instanceof JumpingReferee) {
-                competitions.add(new TeamCompetition(spain2020.getAllReferees().get(randomReferee), Team.eSportTypes.JUMPING,
-                        new Date(2, 12, 2020), CampNou));
-                isFound = true;
-            }
-        } while (!isFound);
-        do {
-            isFound = false;
-            randomReferee = (int) (Math.random() * spain2020.getAllReferees().size()); // a random way
-            if (spain2020.getAllReferees().get(randomReferee) instanceof RunnerReferee) {
-                competitions.add(new TeamCompetition(spain2020.getAllReferees().get(randomReferee), Team.eSportTypes.RUNNING,
-                        new Date(2, 12, 2020), EstadioSantiagoBernabeu));
-                isFound = true;
-            }
-        } while (!isFound);
-        do {
-            isFound = false;
-            randomReferee = (int) (Math.random() * spain2020.getAllReferees().size()); // a random way
-            if (spain2020.getAllReferees().get(randomReferee) instanceof RunnerReferee) {
-                competitions.add(new PersonalCompetition(spain2020.getAllReferees().get(randomReferee),
-                        Team.eSportTypes.RUNNING, new Date(3, 12, 2020), EstadioMetropolitano));
-                isFound = true;
-            }
-        } while (!isFound);
-        do {
-            isFound = false;
-            randomReferee = (int) (Math.random() * spain2020.getAllReferees().size()); // a random way
-            if (spain2020.getAllReferees().get(randomReferee) instanceof JumpingReferee) {
-                competitions.add(new PersonalCompetition(spain2020.getAllReferees().get(randomReferee),
-                        Team.eSportTypes.JUMPING, new Date(4, 12, 2020), EstadioBenitoVillamarin));
-                isFound = true;
-            }
-        } while (!isFound);
-        for (int i = 0; i < competitions.size(); i++) {
-            spain2020.addCompetitons(competitions.get(i));
-        }
-
-
-        for (int a = 0; a < spain2020.getCompetitions().size(); a++) {
-            if (spain2020.getCompetitions().get(a) instanceof TeamCompetition) {
-                for (int j = 0; j < spain2020.getAllTeams().size(); j++) {
-                    if (spain2020.getAllTeams().get(j).getSportTypes() == spain2020.getCompetitions().get(a).getSportTypes()) {
-                        ((TeamCompetition) spain2020.getCompetitions().get(a))
-                                .addTeamsToCompetition(spain2020.getAllTeams().get(j));
-                    }
-                }
-
-            } else if (spain2020.getCompetitions().get(a) instanceof PersonalCompetition) {
-                for (int j = 0; j < spain2020.getAllAthletes().size(); j++) {
-                    if (spain2020.getCompetitions().get(a).getSportTypes() == Team.eSportTypes.RUNNING) {
-                        ((PersonalCompetition) spain2020.getCompetitions().get(a))
-                                .addAthleteToPersonalCompetition(spain2020.getAllAthletes().get(j));
-
-                    } else {
-                        ((PersonalCompetition) spain2020.getCompetitions().get(a))
-                                .addAthleteToPersonalCompetition(spain2020.getAllAthletes().get(j));
-
-                    }
+    public Controller(ManagementSystem spain2020, View1 olympicView) {
+        EventHandler<ActionEvent> showAllParticipants = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    olympicView.showUpdateParticipants(spain2020);
+                } catch (Exception c) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(c.getMessage());
                 }
             }
+        };
+        olympicView.addEventToShowAllParticipants(showAllParticipants);
 
-        }
-       // olympicView.getButton2().setEv
+
+        EventHandler<ActionEvent> addPersonalCompetition = new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    olympicView.addPersonalCompetitions(spain2020);
+                } catch (Exception c) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(c.getMessage());
+                }
+            }
+        };
+        olympicView.addEventToAddPersonalCompetition(addPersonalCompetition);
+        EventHandler<ActionEvent> addTeamCompetition = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    olympicView.addTeamCompetitions(spain2020);
+                } catch (Exception c) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(c.getMessage());
+                }
+            }
+        };
+        olympicView.addEventToAddTeamCompetition(addTeamCompetition);
+
+        EventHandler<ActionEvent> addNewTeam = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    olympicView.addNewTeam(spain2020);
+                  //  olympicView.clearView();
+                } catch (Exception c) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(c.getMessage());
+                }
+            }
+        };
+        olympicView.addEventToAddNewTeam(addNewTeam);
+        EventHandler<ActionEvent> addTeamToTeamCompetition = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    olympicView.AddTeamToTeamCompetition(spain2020);
+                } catch (Exception c) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(c.getMessage());
+                }
+            }
+        };
+        olympicView.addEventToAddTeamInTeamCompetition(addTeamToTeamCompetition);
+
+
+        EventHandler<ActionEvent> AddAthletePersonalCompetition = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    olympicView.addAthleteToPersonalCompetition(spain2020);
+                } catch (Exception c) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(c.getMessage());
+                }
+            }
+        };
+        olympicView.addEventToAddAthletePersonalCompetition(AddAthletePersonalCompetition);
+        EventHandler<ActionEvent> StartCompetition = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    olympicView.startCompetition(spain2020);
+                } catch (Exception c) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(c.getMessage());
+                }
+            }
+        };
+
+        olympicView.addEventToAddStartCompetition(StartCompetition);
+
+        EventHandler<ActionEvent> GetFinalWinners = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    olympicView.getFinalWinners(spain2020);
+                } catch (Exception c) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(c.getMessage());
+                }
+            }
+        };
+        olympicView.addEventToGetFinalWinners(GetFinalWinners);
+
+        EventHandler<ActionEvent> operateRun = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    olympicView.updateModel(spain2020);
+                } catch (Exception c) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(c.getMessage());
+                }
+            }
+        };
+        olympicView.addEventToRun(operateRun);
+
+        EventHandler<ActionEvent> addButtonPressed = new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    olympicView.updateModel(spain2020);
+                    olympicView.clearView();
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                }
+            }
+        };
+        olympicView.addEventToAddButton(addButtonPressed);
+
+        EventHandler<ActionEvent> startButtonPressed = new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    olympicView.updateModel(spain2020);
+                  //  olympicView.clearView();
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                }
+            }
+        };
+        olympicView.addEventToStartButton(startButtonPressed);
+
+        EventHandler<ActionEvent> showExistTeams = new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    olympicView.ShowExistTeams(spain2020);
+                    //  olympicView.clearView();
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(e.getMessage());
+                }
+            }
+        };
+        olympicView.addEventToShowExistTeams(showExistTeams);
+
     }
 }
-
-

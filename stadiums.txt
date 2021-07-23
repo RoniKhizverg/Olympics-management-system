@@ -1,0 +1,24 @@
+Camp Now
+Barcelona
+99354
+Estadio Santiago Bernabeu
+Madrid
+85454
+stadio Metropolitano
+Madrid
+68456
+Estadio Benito Villamarín
+Madrid
+60724
+Estadio Ramon Sanchez Pizjuan
+Sevilia
+45500
+El Molinon
+Gijon
+30000
+Estadio Nuevo Arcangel
+Cordoba
+15425
+Nou Estadi
+Tarragona
+12000
