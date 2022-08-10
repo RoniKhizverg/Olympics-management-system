@@ -1,6 +1,6 @@
 # Olympics-management-system
 
-# Game Development - Final Project
+## Developed by Or Amram and Roni Khizverg for Oop Java course final project.
 
 ### About The Project
 
@@ -8,8 +8,6 @@ An intuitive system in MVC structure that manage an Olympic-Games.
 Using Java, JavaFX.
 <br />
 <br />
-<br />
-Developed by Or Amram and Roni Khizverg for Oop Java course final project.
 
 ### Built With
 
