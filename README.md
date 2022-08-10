@@ -1,6 +1,6 @@
 # Olympics-management-system
 
-## Developed by Or Amram and Roni Khizverg for Oop Java course final project.
+## Developed by Or Amram and Roni Khizverg for  Java OOP course final project.
 
 ### About The Project
 
